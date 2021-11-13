@@ -1,6 +1,6 @@
 <?php
 
-abstract class customer {
+abstract class installment {
 
     protected $id;
     protected $Quantity;
