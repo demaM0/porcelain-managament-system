@@ -28,7 +28,6 @@ abstract class User extends Person {
           $this->Email=$row["Email"];
           $this->Username=$row["Username"];
           $this->Password=$row["Password"];
-
           $this->UserTypeObj=new UserType($row["UserType"]);
         }
 		
