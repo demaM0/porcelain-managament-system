@@ -1,5 +1,5 @@
 <?php
-class InvoiceDetails
+class invoicedetails
 {
     protected $Id;
     protected $ItemID;
@@ -12,7 +12,7 @@ class InvoiceDetails
     }
     public function getID()
     {
-        return $this->id;
+        return $this->Id;
     }
     public function getItemID()
     {
