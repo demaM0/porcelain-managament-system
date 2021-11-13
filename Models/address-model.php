@@ -21,7 +21,7 @@ abstract class address {
           $this->ID=$row["ID"];
           $this->City=$row["City"];
           $this->Building=$row["Building"];
-          $this->zipCode=$row["ZipCode"];
+          $this->zipCode=$row["zipCode"];
           $this->SupplierID=$row["SupplierID"];
         }
     }
