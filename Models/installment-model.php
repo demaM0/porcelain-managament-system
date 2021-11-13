@@ -4,11 +4,24 @@ abstract class installment {
 
     protected $id;
     protected $Quantity;
-    protected $InstalmmentDate;
+    protected $InstallmentDate;
     protected $TransactionID;
-    public function __construct()
+    function __construct($ID)
     {
-
+        $con = mysqli_connect("localhost","root","","almasrya");
+        if(!$con)
+        {
+          die('could not connect: ' . mysqli_error());
+        }
+        $sql="select * from installment where ID=$ID";
+        $installmentdataset = mysqli_query($con,$sql);
+        if($row = mysqli_fetch_array($installmentdataset))
+        {
+          $this->id=$row["id"];
+          $this->Quantity=$row["Quantity"];
+          $this->InstallmentDate=$row["InstallmentDate"];
+          $this->TransactionID=$row["TransactionID"];
+        }
     }
     abstract public function setid(string $id)
     {
@@ -18,13 +31,9 @@ abstract class installment {
     {
         $this->Quantity = $Quantity;
     }
-    abstract public function setinstallmentdate(string $InstalmmentDate)
+    abstract public function setinstallmentdate(string $InstallmentDate)
     {
-        $this->InstalmmentDate = $InstalmmentDate;
-    }
-    abstract public function settransactionid(string $TransactionID)
-    {
-        $this->TransactionID = $TransactionID;
+        $this->InstallmentDate = $InstallmentDate;
     }
 
     abstract public function getid()
@@ -37,7 +46,7 @@ abstract class installment {
     }
     abstract public function getinstallmentdate()
     {
-        return $this->InstalmmentDate;
+        return $this->InstallmentDate;
     }
     abstract public function gettransactionid()
     {
