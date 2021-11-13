@@ -2,16 +2,16 @@
 abstract class UserType {
 
   protected $Id;
-  protected $nameType;
+  protected $Name;
 
-  function __construct($id)
+  function __construct($Id)
   {
       $con = mysqli_connect("localhost","root","","almasrya");
       if(!$con)
       {
         die('could not connect: ' . mysqli_error());
       }
-      $sql="select * from UserType where id=$Id";
+      $sql="select * from UserType where Id=$Id";
       $UserTypedataset = mysqli_query($con,$sql);
       if($row = mysqli_fetch_array($UserTypedataset))
       {
@@ -19,9 +19,18 @@ abstract class UserType {
         $this->Name=$row["Name"];
       }
   }
-  abstract public function setnameType(string $nameType)
+  abstract public function setName(string $Name)
   {
-    $this->username = $username;
+    $this->Name = $Name;
+  }
+
+  abstract public function getName()
+  {
+    return $this->Name;
+  }
+  abstract public function getId()
+  {
+    return $this->Id;
   }
 }
 ?>
