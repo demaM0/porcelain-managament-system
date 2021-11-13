@@ -1,18 +1,11 @@
 <?php
 class invoice
 {
-    protected $id;
-    protected $itemID;
-    protected $itemName;
-    protected $itemQuantity;
-    protected $itemPrice;
-    protected $date;
-    protected $time;
-    public function Calculate()
-    {
-
-    }
-    
+    protected $Id;
+    protected $DateTimeStamp;
+    protected $SalesManID;
+    protected $CustomerID;
+    protected $Total;
     public function __construct()
     {
 
@@ -21,46 +14,28 @@ class invoice
     {
         return $this->id;
     }
-    public function setItemID(int $itemID)
-    {
-        $this->itemID = $itemID;
-    }
-    public function getItemID()
-    {
-        return $this->itemID;
-    }
-    public function setItemName(string $itemName)
-    {
-        $this->itemName = $itemName;
-    }
-    public function getItemName()
-    {
-        return $this->itemName;
-    }
-    public function setItemQuantity(int $itemQuantity)
-    {
-        $this->itemQuantity = $itemQuantity;
-    }
-    public function getItemQuantity()
+    public function getSalesManID()
     {
         return $this->itemQuantity;
     }
-    public function setItemPrice(int $itemPrice)
+    public function getCustomerID()
     {
-        $this->itemPrice = $itemPrice;
+        return $this->itemQuantity;
     }
-    public function getItemPrice()
+    public function getDateTimeStamp()
     {
-        return $this->itemPrice;
+        return $this->DateTimeStamp;     
     }
-    public function getDate()
-    {
-        return $this->date;
-        
+    public function Calculate()
+    {       
     }
-    public function getTime()
+    public function setTotal(int $Total)
     {
-        return $this->time;
+        $this->Total = $Total;
+    }
+    public function getTotal(int $Total)
+    {
+        return $this->Total;  
     }
 }
 ?>
