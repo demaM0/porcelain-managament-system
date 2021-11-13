@@ -14,11 +14,11 @@ class items(){
         {
           die('could not connect: ' . mysqli_error());
         }
-        $sql="select * from item where Id=$ID";
+        $sql="select * from items where ID=$ID";
         $itemsdataset = mysqli_query($con,$sql);
         if($row = mysqli_fetch_array($itemsdataset))
         {
-          $this->ID=$row["Id"];
+          $this->ID=$row["ID"];
           $this->Name=$row["Name"];
           $this->Color=$row["Color"];
           $this->Quantity=$row["Quantity"];
@@ -73,14 +73,11 @@ class items(){
     {
         return $this->Price;
     }
-    public function setSupplierID()
+    public function getSupplierID()
     {
         return $this->SupplierID;
     }
-    public function getItemTypeId()
-    {
-        return $this->ItemTypeId;
-    }
+
 
 }
 
