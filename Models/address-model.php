@@ -1,6 +1,6 @@
 <?php
 
-abstract class address {
+class address {
 
     protected $ID;
     protected $City;
@@ -25,40 +25,36 @@ abstract class address {
           $this->SupplierID=$row["SupplierID"];
         }
     }
-    abstract public function setid(string $ID)
-    {
-        $this->ID = $ID;
-    }
-    abstract public function setcity(string $City)
+     public function setCity($City)
     {
         $this->City = $City;
     }
-    abstract public function setbuilding(string $Building)
+     public function setBuilding($Building)
     {
         $this->Building = $Building;
     }
-    abstract public function setzipcode(string $zipCode)
+     public function setzipCode($zipCode)
     {
         $this->zipCode = $zipCode;
     }
 
-    abstract public function getid()
+     public function getID()
     {
         return $this->ID;
     }
-    abstract public function getcity()
+     public function getCity()
     {
         return $this->City;
     }
-    abstract public function getbuilding()
+     public function getBuilding()
     {
         return $this->Building;
     }
-    abstract public function getzipcode()
+     public function getzipCode()
     {
         return $this->zipCode;
     }
-    abstract public function getsupplierid()
+     public function getSupplierID()
     {
         return $this->SupplierID;
     }

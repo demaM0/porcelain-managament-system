@@ -24,7 +24,7 @@ class invoicedetails
           $this->Total=$row["Total"];
         }
     }
-    public function getID()
+    public function getId()
     {
         return $this->Id;
     }
@@ -43,9 +43,6 @@ class invoicedetails
     public function getQuantity()
     {
         return $this->Quantity;
-    }
-    public function Calculate()
-    {       
     }
     public function getTotal()
     {

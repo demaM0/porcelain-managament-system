@@ -1,15 +1,14 @@
 <?php
-include_once("UserType.php");
+include_once("usertype.php");
 
-abstract class User extends Person {
+abstract class user{
 
     protected $Id;
     protected $Name;
     protected $Phone;
     protected $Email;
-    protected $Username;
     protected $Password;
-    protected $UserTypeObj;
+    protected $UserType;
 
     abstract public __construct($Id)
     {
@@ -18,7 +17,7 @@ abstract class User extends Person {
         {
           die('could not connect: ' . mysqli_error());
         }
-        $sql="select * from User where Id=$Id";
+        $sql="select * from user where Id=$Id";
         $Userdataset = mysqli_query($con,$sql);
         if($row = mysqli_fetch_array($Userdataset))
         {
@@ -26,67 +25,63 @@ abstract class User extends Person {
           $this->Name=$row["Name"];
           $this->Phone=$row["Phone"];
           $this->Email=$row["Email"];
-          $this->Username=$row["Username"];
           $this->Password=$row["Password"];
-          $this->UserTypeObj=new UserType($row["UserType"]);
+          $this->UserType=$row["UserType"];
         }
 		
     }
 
         #setters
-    abstract public function setusername(string $Username)
-    {
-        $this->Username = $Username;
-    }
-    abstract public function setpassword(string $Password)
+    abstract public function setPassword(string $Password)
     {
         $this->Password = $Password;
     }
 
-    abstract public function setname(string $Name)
+    abstract public function setName(string $Name)
     {
         $this->Name = $Name;
     }
-    abstract public function setphone(string $Phone)
+    abstract public function setPhone(string $Phone)
     {
         $this->Phone = $Phone;
     }
-    abstract public function setemail(string $Email)
+    abstract public function setEmail(string $Email)
     {
         $this->Email =$Email
     }
-
+    abstract public function setUserType(string $UserType)
+    {
+        $this->UserType =$UserType
+    }
+    
     #getters
-    abstract public function getid()
+    abstract public function getId()
     {
         return $this->Id;
     }
 
-    abstract public function getname()
+    abstract public function getName()
     {
         return $this->Name;
     }
-    abstract public function getphone()
+    abstract public function getPhone()
     {
         return $this->Phone;
     }
-    abstract public function getemail()
+    abstract public function getEmail()
     {
         return $this->Email;
     }
-    abstract public function getusername()
-    {
-        return $this->Username;
-    }
-    abstract public function getpassword()
+
+    abstract public function getPassword()
     {
          
         return $this->Password;
     }
-    abstract public function getUserTypeObj()
+    abstract public function getUserType()
     {
          
-        return $this->UserTypeObj;
+        return $this->UserType;
     }
   }
 ?>

@@ -1,54 +1,54 @@
 <?php
 
-abstract class installment {
+ class installment {
 
-    protected $id;
+    protected $Id;
     protected $Quantity;
     protected $InstallmentDate;
     protected $TransactionID;
-    function __construct($id)
+    function __construct($Id)
     {
         $con = mysqli_connect("localhost","root","","almasrya");
         if(!$con)
         {
           die('could not connect: ' . mysqli_error());
         }
-        $sql="select * from installment where id=$id";
+        $sql="select * from installment where Id=$Id";
         $installmentdataset = mysqli_query($con,$sql);
         if($row = mysqli_fetch_array($installmentdataset))
         {
-          $this->id=$row["id"];
+          $this->Id=$row["Id"];
           $this->Quantity=$row["Quantity"];
           $this->InstallmentDate=$row["InstallmentDate"];
           $this->TransactionID=$row["TransactionID"];
         }
     }
-    abstract public function setransactionid(string $TransactionID)
+     public function setTransactionID( $TransactionID)
     {
         $this->TransactionID = $TransactionID;
     }
-    abstract public function setquantity(string $Quantity)
+     public function setQuantity( $Quantity)
     {
         $this->Quantity = $Quantity;
     }
-    abstract public function setinstallmentdate(string $InstallmentDate)
+     public function setInstallmentDate( $InstallmentDate)
     {
         $this->InstallmentDate = $InstallmentDate;
     }
 
-    abstract public function getid()
+     public function getId()
     {
         return $this->id;
     }
-    abstract public function getquantity()
+     public function getQuantity()
     {
         return $this->Quantity;
     }
-    abstract public function getinstallmentdate()
+     public function getInstallmentDate()
     {
         return $this->InstallmentDate;
     }
-    abstract public function gettransactionid()
+     public function getTransactionID()
     {
         return $this->TransactionID;
     }

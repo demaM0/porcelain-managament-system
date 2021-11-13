@@ -1,6 +1,6 @@
 <?php
 
-abstract class supplier {
+ class supplier {
 
     protected $ID;
     protected $Name;
@@ -23,32 +23,32 @@ abstract class supplier {
           $this->Email=$row["Email"];
         }
     }
-    abstract public function setname(string $Name)
+     public function setname(string $Name)
     {
         $this->Name = $Name;
     }
-    abstract public function setphone(string $Phone)
+     public function setphone(string $Phone)
     {
         $this->Phone = $Phone;
     }
-    abstract public function setemail(string $Email)
+     public function setemail(string $Email)
     {
         $this->Email = $Email;
     }
 
-    abstract public function getid()
+     public function getid()
     {
         return $this->ID;
     }
-    abstract public function getname()
+     public function getname()
     {
         return $this->Name;
     }
-    abstract public function getphone()
+     public function getphone()
     {
         return $this->Phone;
     }
-    abstract public function getemail()
+     public function getemail()
     {
         return $this->Email;
     }

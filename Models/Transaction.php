@@ -1,5 +1,5 @@
 <?php
-class Transaction
+class transaction
 {
     protected $Id;
     protected $FullPrice;
@@ -13,21 +13,22 @@ class Transaction
         {
           die('could not connect: ' . mysqli_error());
         }
-        $sql="select * from Transaction where Id=$Id";
+        $sql="select * from transaction where Id=$Id";
         $Transactiondataset = mysqli_query($con,$sql);
         if($row = mysqli_fetch_array($Transactiondataset))
         {
           $this->Id=$row["Id"];
           $this->FullPrice=$row["FullPrice"];
           $this->DateOfTransaction=$row["DateOfTransaction"];
-          $this->SupplierID=$row["ManagerID"];
+          $this->SupplierID=$row["SupplierID"];
+          $this->ManagerID=$row["ManagerID"];
         }
     }
-    public function getID()
+    public function getId()
     {
         return $this->Id;
     }
-    public function setFullPrice(int $FullPrice)
+    public function setFullPrice($FullPrice)
     {
         $this->FullPrice = $FullPrice;
     }
@@ -48,33 +49,15 @@ class Transaction
         return $this->ManagerID;
     }
 
+    public function setManagerID($ManagerID)
+    {
+        $this->ManagerID = $ManagerID;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public function setSupplierID($SupplierID)
+    {
+        $this->SupplierID = $SupplierID;
+    }
 
 
 }

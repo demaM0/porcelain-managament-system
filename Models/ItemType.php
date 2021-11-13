@@ -23,7 +23,7 @@ class itemtype{
     {
         return $this->Id;
     }
-    public function setCategory(string $Category)
+    public function setCategory($Category)
     {
         $this->Category = $Category;
     }
@@ -31,7 +31,7 @@ class itemtype{
     {
         return $this->Category;
     }
-    public function setShape(string $Shape)
+    public function setShape($Shape)
     {
         $this->Shape = $Shape;
     }

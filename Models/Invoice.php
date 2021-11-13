@@ -40,13 +40,10 @@ abstract class invoice
     {
         return $this->DateTimeStamp;     
     }
-    public function Calculate()
-    {       
-    }
     public function getTotal(int $Total)
     {
         return $this->Total;  
     }
-    public function upgradeInvoice();
+    abstract public function upgradeInvoice();
 }
 ?>
