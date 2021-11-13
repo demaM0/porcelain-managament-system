@@ -23,9 +23,9 @@ abstract class installment {
           $this->TransactionID=$row["TransactionID"];
         }
     }
-    abstract public function setid(string $id)
+    abstract public function setransactionid(string $TransactionID)
     {
-        $this->id = $id;
+        $this->TransactionID = $TransactionID;
     }
     abstract public function setquantity(string $Quantity)
     {

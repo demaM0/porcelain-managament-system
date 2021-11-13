@@ -23,10 +23,6 @@ abstract class customer {
           $this->Email=$row["Email"];
         }
     }
-    abstract public function setid(string $ID)
-    {
-        $this->ID = $ID;
-    }
     abstract public function setname(string $Name)
     {
         $this->Name = $Name;
