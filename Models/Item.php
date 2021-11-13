@@ -1,56 +1,69 @@
 <?php
 class item(){
-   protected $id;
-   protected $name;
-   protected $color;
-   protected $quantity;
-   protected $itemTypeId;
-   protected $price;
+   protected $ID;
+   protected $Name;
+   protected $Color;
+   protected $Quantity;
+   protected $Type;
+   protected $Price;
+   protected $SupplierID;
    public function __construct()
-   {}    
-    public function getId()
-    {
-        return $this->id;
-    }
+   {
+
+   }    
+    
     public function setName($name)
     {
         $this->name=$name;
     }
-    public function getName()
-    {
-        return $this->name;
-    }
+    
     public function setColor($color)
     {
         $this->color=$color;
     }
-    public function getColor()
-    {
-        return $this->color;
-    }
+
     public function setQuantity($quantity)
     {
         $this->quantity=$quantity;
     }
-    public function getQuantity()
-    {
-        return $this->quantity;
-    }
-    public function setItemTypeId($itemTypeId)
-    {
-        $this->itemTypeId=$itemTypeId;
-    }
-    public function getItemTypeId()
-    {
-        return $this->ItemTypeId;
-    }
+
     public function setPrice($price)
     {
         $this->price=$price;
     }
+
+    public function setSupplierID($SupplierID)
+    {
+        $this->SupplierID=$SupplierID;
+    }
+
+    public function getID()
+    {
+        return $this->ID;
+    }
+    public function getName()
+    {
+        return $this->Name;
+    }
+    public function getColor()
+    {
+        return $this->Color;
+    }
+    public function getQuantity()
+    {
+        return $this->Quantity;
+    }
     public function getPrice()
     {
         return $this->Price;
+    }
+    public function setSupplierID()
+    {
+        return $this->SupplierID;
+    }
+    public function getItemTypeId()
+    {
+        return $this->ItemTypeId;
     }
 
 }

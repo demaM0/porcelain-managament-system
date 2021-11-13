@@ -13,7 +13,7 @@ abstract class User extends Person {
 
     abstract public __construct($id)
     {
-        $con = mysqli_connect("localhost","root","","elmasrya");
+        $con = mysqli_connect("localhost","root","","almasrya");
         if(!$con)
         {
           die('could not connect: ' . mysqli_error());

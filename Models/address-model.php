@@ -9,7 +9,7 @@ abstract class address {
     protected $SupplierID
     public function __construct($ID)
     {
-        $con = mysqli_connect("localhost","root","","elmasrya");
+        $con = mysqli_connect("localhost","root","","almasrya");
         if(!$con)
         {
           die('could not connect: ' . mysqli_error());
