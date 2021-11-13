@@ -1,6 +1,6 @@
 <?php
 
-abstract class customer {
+ class customer {
 
     protected $ID;
     protected $Name;
@@ -23,32 +23,32 @@ abstract class customer {
           $this->Email=$row["Email"];
         }
     }
-    abstract public function setname(string $Name)
+    public function setName($Name)
     {
         $this->Name = $Name;
     }
-    abstract public function setphone(string $Phone)
+    public function setPhone($Phone)
     {
         $this->Phone = $Phone;
     }
-    abstract public function setemail(string $Email)
+    public function setEmail($Email)
     {
         $this->Email = $Email;
     }
 
-    abstract public function getid()
+    public function getID()
     {
         return $this->ID;
     }
-    abstract public function getname()
+    public function getName()
     {
         return $this->Name;
     }
-    abstract public function getphone()
+    public function getPhone()
     {
         return $this->Phone;
     }
-    abstract public function getemail()
+    public function getEmail()
     {
         return $this->Email;
     }

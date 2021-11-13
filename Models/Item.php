@@ -28,24 +28,24 @@ class items(){
         }
    }    
     
-    public function setName($name)
+    public function setName($Name)
     {
-        $this->Name=$name;
+        $this->Name=$Name;
     }
     
-    public function setColor($color)
+    public function setColor($Color)
     {
         $this->Color=$color;
     }
 
-    public function setQuantity($quantity)
+    public function setQuantity($Quantity)
     {
-        $this->Quantity=$quantity;
+        $this->Quantity=$Quantity;
     }
 
-    public function setPrice($price)
+    public function setPrice($Price)
     {
-        $this->Price=$price;
+        $this->Price=$Price;
     }
 
     public function setSupplierID($SupplierID)
@@ -77,7 +77,6 @@ class items(){
     {
         return $this->SupplierID;
     }
-
 
 }
 

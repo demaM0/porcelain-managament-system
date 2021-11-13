@@ -39,11 +39,7 @@ class DbConnection
         } 
         
     }
-    /** 
-     * 
-     * @param string $db_Name
-     * @return mysql link
-    */
+    
     private function database_select($db_Name)
     {
         return mysqli_select_db($this->database_connection,$db_Name)
@@ -52,8 +48,4 @@ class DbConnection
     }
     
 }
-for($i=0;$i<100;$i++)
-    {
-        $db=DbConnection::getInstance();
-    }
 ?>

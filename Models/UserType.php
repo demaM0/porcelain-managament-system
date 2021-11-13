@@ -1,5 +1,5 @@
 <?php
-abstract class UserType {
+abstract class usertype {
 
   protected $Id;
   protected $Name;
@@ -11,7 +11,7 @@ abstract class UserType {
       {
         die('could not connect: ' . mysqli_error());
       }
-      $sql="select * from UserType where Id=$Id";
+      $sql="select * from usertype where Id=$Id";
       $UserTypedataset = mysqli_query($con,$sql);
       if($row = mysqli_fetch_array($UserTypedataset))
       {
