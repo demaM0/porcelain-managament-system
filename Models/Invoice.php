@@ -12,7 +12,7 @@ class invoice
     }
     public function getID()
     {
-        return $this->id;
+        return $this->Id;
     }
     public function getSalesManID()
     {
@@ -28,10 +28,6 @@ class invoice
     }
     public function Calculate()
     {       
-    }
-    public function setTotal(int $Total)
-    {
-        $this->Total = $Total;
     }
     public function getTotal(int $Total)
     {
