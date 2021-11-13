@@ -1,4 +1,6 @@
 <?php
+class InvoiceDetails
+{
     protected $Id;
     protected $ItemID;
     protected $InvoiceID;
