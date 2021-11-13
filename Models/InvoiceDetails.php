@@ -6,9 +6,23 @@ class invoicedetails
     protected $InvoiceID;
     protected $Quantity;
     protected $Total;
-    public function __construct()
+    function __construct($Id)
     {
-
+        $con = mysqli_connect("localhost","root","","almasrya");
+        if(!$con)
+        {
+          die('could not connect: ' . mysqli_error());
+        }
+        $sql="select * from invoicedetails where Id=$Id";
+        $invoicedetailsdataset = mysqli_query($con,$sql);
+        if($row = mysqli_fetch_array($invoicedetailsdataset))
+        {
+          $this->Id=$row["Id"];
+          $this->ItemID=$row["ItemID"];
+          $this->InvoiceID=$row["InvoiceID"];
+          $this->Quantity=$row["Quantity"];
+          $this->Total=$row["Total"];
+        }
     }
     public function getID()
     {

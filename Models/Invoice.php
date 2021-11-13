@@ -6,9 +6,23 @@ abstract class invoice
     protected $SalesManID;
     protected $CustomerID;
     protected $Total;
-    public function __construct()
+    function __construct($Id)
     {
-
+        $con = mysqli_connect("localhost","root","","almasrya");
+        if(!$con)
+        {
+          die('could not connect: ' . mysqli_error());
+        }
+        $sql="select * from invoice where Id=$Id";
+        $invoicedataset = mysqli_query($con,$sql);
+        if($row = mysqli_fetch_array($invoicedataset))
+        {
+          $this->Id=$row["Id"];
+          $this->DateTimeStamp=$row["DateTimeStamp"];
+          $this->SalesManID=$row["SalesManID"];
+          $this->CustomerID=$row["CustomerID"];
+          $this->Total=$row["Total"];
+        }
     }
     public function getID()
     {
