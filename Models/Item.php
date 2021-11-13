@@ -7,14 +7,14 @@ class items(){
    protected $Type;
    protected $Price;
    protected $SupplierID;
-   public function __construct($Id)
+   public function __construct($ID)
    {
     $con = mysqli_connect("localhost","root","","almasrya");
         if(!$con)
         {
           die('could not connect: ' . mysqli_error());
         }
-        $sql="select * from item where Id=$Id";
+        $sql="select * from item where Id=$ID";
         $itemsdataset = mysqli_query($con,$sql);
         if($row = mysqli_fetch_array($itemsdataset))
         {
