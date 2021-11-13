@@ -6,7 +6,8 @@ class item(){
    protected $quantity;
    protected $itemTypeId;
    protected $price;
-    
+   public function __construct()
+   {}    
     public function getId()
     {
         return $this->id;
