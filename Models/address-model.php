@@ -7,9 +7,23 @@ abstract class address {
     protected $Building;
     protected $zipCode;
     protected $SupplierID
-    public function __construct()
+    public function __construct($ID)
     {
-
+        $con = mysqli_connect("localhost","root","","elmasrya");
+        if(!$con)
+        {
+          die('could not connect: ' . mysqli_error());
+        }
+        $sql="select * from address where ID=$ID";
+        $addressdataset = mysqli_query($con,$sql);
+        if($row = mysqli_fetch_array($addressdataset))
+        {
+          $this->ID=$row["ID"];
+          $this->City=$row["City"];
+          $this->Building=$row["Building"];
+          $this->zipCode=$row["ZipCode"];
+          $this->SupplierID=$row["SupplierID"];
+        }
     }
     abstract public function setid(string $ID)
     {
