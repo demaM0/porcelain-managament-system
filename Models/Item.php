@@ -1,5 +1,5 @@
 <?php
-class item(){
+class items(){
    protected $ID;
    protected $Name;
    protected $Color;
@@ -7,29 +7,45 @@ class item(){
    protected $Type;
    protected $Price;
    protected $SupplierID;
-   public function __construct()
+   public function __construct($ID)
    {
-
+    $con = mysqli_connect("localhost","root","","almasrya");
+        if(!$con)
+        {
+          die('could not connect: ' . mysqli_error());
+        }
+        $sql="select * from item where Id=$ID";
+        $itemsdataset = mysqli_query($con,$sql);
+        if($row = mysqli_fetch_array($itemsdataset))
+        {
+          $this->ID=$row["Id"];
+          $this->Name=$row["Name"];
+          $this->Color=$row["Color"];
+          $this->Quantity=$row["Quantity"];
+          $this->Type=$row["Type"];
+          $this->Price=$row["Price"];
+          $this->SupplierID=$row["SupplierID"];
+        }
    }    
     
     public function setName($name)
     {
-        $this->name=$name;
+        $this->Name=$name;
     }
     
     public function setColor($color)
     {
-        $this->color=$color;
+        $this->Color=$color;
     }
 
     public function setQuantity($quantity)
     {
-        $this->quantity=$quantity;
+        $this->Quantity=$quantity;
     }
 
     public function setPrice($price)
     {
-        $this->price=$price;
+        $this->Price=$price;
     }
 
     public function setSupplierID($SupplierID)
