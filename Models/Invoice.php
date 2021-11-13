@@ -16,11 +16,11 @@ class invoice
     }
     public function getSalesManID()
     {
-        return $this->itemQuantity;
+        return $this->SalesManId;
     }
     public function getCustomerID()
     {
-        return $this->itemQuantity;
+        return $this->CustomerID;
     }
     public function getDateTimeStamp()
     {
