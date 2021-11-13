@@ -33,7 +33,7 @@ class invoicedetails
     public function Calculate()
     {       
     }
-    public function getTotal(int $Total)
+    public function getTotal()
     {
         return $this->Total;  
     }
