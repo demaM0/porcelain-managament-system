@@ -6,9 +6,22 @@ abstract class customer {
     protected $Name;
     protected $Phone;
     protected $Email;
-    public function __construct()
+    function __construct($ID)
     {
-
+        $con = mysqli_connect("localhost","root","","almasrya");
+        if(!$con)
+        {
+          die('could not connect: ' . mysqli_error());
+        }
+        $sql="select * from customer where ID=$ID";
+        $customerdataset = mysqli_query($con,$sql);
+        if($row = mysqli_fetch_array($customerdataset))
+        {
+          $this->ID=$row["ID"];
+          $this->Name=$row["Name"];
+          $this->Phone=$row["Phone"];
+          $this->Email=$row["Email"];
+        }
     }
     abstract public function setid(string $ID)
     {
