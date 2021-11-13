@@ -6,14 +6,14 @@ abstract class installment {
     protected $Quantity;
     protected $InstallmentDate;
     protected $TransactionID;
-    function __construct($ID)
+    function __construct($id)
     {
         $con = mysqli_connect("localhost","root","","almasrya");
         if(!$con)
         {
           die('could not connect: ' . mysqli_error());
         }
-        $sql="select * from installment where ID=$ID";
+        $sql="select * from installment where id=$id";
         $installmentdataset = mysqli_query($con,$sql);
         if($row = mysqli_fetch_array($installmentdataset))
         {
