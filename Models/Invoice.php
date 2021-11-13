@@ -30,7 +30,7 @@ abstract class invoice
     }
     public function getSalesManID()
     {
-        return $this->SalesManId;
+        return $this->SalesManID;
     }
     public function getCustomerID()
     {
