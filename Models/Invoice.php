@@ -1,5 +1,5 @@
 <?php
-class invoice
+abstract class invoice
 {
     protected $Id;
     protected $DateTimeStamp;
@@ -33,5 +33,6 @@ class invoice
     {
         return $this->Total;  
     }
+    public function upgradeInvoice();
 }
 ?>
