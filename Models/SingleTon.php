@@ -1,5 +1,5 @@
 <?php
-class DbConnection
+class DbConnection extends mysqli
  {
     private $host="localhost";
     private $username="root";
