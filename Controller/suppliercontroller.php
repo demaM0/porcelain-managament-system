@@ -6,7 +6,7 @@
   include_once('\Observer\observerinterface.php');
   include_once('manager.php');
   include_once('salesman.php');
-class supplier implements Observer{
+  class supplier implements Observer{
     protected $ID;
     protected $Name;
     protected $Phone;
@@ -20,12 +20,12 @@ public function __construct(Subject $W)
     public function update($x){
         if($x==1)
         {
-            echo("Manager is talking to the supplier");
+            echo("Manager is talking to the supplier. ");
            
         }
         if($x==2)
         {
-            echo("Sales man is talking to the supplier");
+            echo("Sales man is talking to the supplier. ");
           
         }
     }

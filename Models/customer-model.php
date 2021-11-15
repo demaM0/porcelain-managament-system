@@ -1,5 +1,12 @@
 <?php
-require_once("SingleTon.php");
+ include_once('\Observer\notify.php');
+ include_once('\Observer\observerinterface.php');
+ include_once('\Observer\subjectinterface.php');
+ include_once('\Controller\customercontroller.php');
+ include_once('\Controller\manager.php');
+ include_once('\Controller\salesman.php');
+ include_once('\Controller\suppliercontroller.php');
+ require_once("SingleTon.php");
  class customer {
 
     protected $ID;
@@ -13,8 +20,8 @@ require_once("SingleTon.php");
         {
           die('could not connect: ' . mysqli_error($con));
         }
-        $sql="select * from customer where ID=$ID";
-        $customerdataset = mysqli_query($con,$sql);
+        $sql= "SELECT * FROM customer WHERE ID=$ID";
+        $customerdataset = mysqli_query($con,$sql,MYSQLI_USE_RESULT);
         if($row = mysqli_fetch_array($customerdataset))
         {
           $this->ID=$row["ID"];
