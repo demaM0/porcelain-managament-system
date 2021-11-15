@@ -2,15 +2,23 @@
 include_once("Invoice.php");
 
 class discount extends invoice{
-     $ref;
-    public discount($ref )
+    protected $ref;
+    protected $discount;
+    public function __construct($ref)
     {
         $this->ref=$ref;
     }
+    public function getref()
+    {
+        return $this-> ref;
+    }
+    public function discount($discount)
+    {
+        $this->discount=$discount;
+    }
     public function upgradeInvoice()
     {
-        return 30 + $ref.upgradeInvoice(); 
-        //tester values
+        return $this->ref.upgradeInvoice()-($this->discount * $this->ref.upgradeInvoice());
     }
 }
 ?>

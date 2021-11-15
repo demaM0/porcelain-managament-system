@@ -46,5 +46,6 @@ abstract class invoice
         return $this->Total;  
     }
     abstract public function upgradeInvoice();
+    abstract public function getcurrentprice();
 }
 ?>
