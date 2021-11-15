@@ -1,16 +1,17 @@
 <?php
 require_once("SingleTon.php");
+require_once("notify.php");
 class CreateItem
 {
 
-    public function CreateItem($Item)
+    public function __construct($name,$color,$quantity,$type,$price,$supplierid)
     {
         $con =DbConnection::getInstance();
         if(!$con)
         {
           die('could not connect: ' . mysqli_error($con));
         }
-        $reg = "insert into items(ID, Name, Color, Quantity, Type, Price, SupplierID) values ('$Item->ID', '$Item->Name', '$Item->Color', '$Item->Quantity', '$Item->Type', '$Item->Price', '$Item->SupplierID')";
+        $reg = "insert into items(Name, Color, Quantity, Type, Price, SupplierID) values ('$name', '$color', '$quantity', '$type', '$price', '$supplierid')";
         mysqli_query($con,$reg);
         
     }
