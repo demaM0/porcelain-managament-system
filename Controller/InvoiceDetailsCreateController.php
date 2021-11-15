@@ -3,14 +3,14 @@ require_once("SingleTon.php");
 class CreateInvoiceDetails
 {
 
-    public function Create($InvoiceDetails)
+    public function Create($ItemID,$InvoiceID,$Quantity,$Total)
     {
         $con =DbConnection::getInstance();
         if(!$con)
         {
           die('could not connect: ' . mysqli_error($con));
         }
-        $reg = "insert into invoicedetails(ItemID, InvoiceID,Quantity,Total) values ('$InvoiceDetails->DateTimeStamp', '$InvoiceDetails->SalesManID','$InvoiceDetails->CustomerID','$InvoiceDetails->Total')";
+        $reg = "insert into invoicedetails(ItemID, InvoiceID,Quantity,Total) values ('$ItemID', '$InvoiceID->SalesManID','$Quantity','$Total')";
         mysqli_query($con,$reg);
         
     }
