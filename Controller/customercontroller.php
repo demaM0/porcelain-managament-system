@@ -5,7 +5,7 @@
     include_once('\Observer\notify.php');
     include_once('\Observer\observerinterface.php');
     include_once('salesman.php');
-    include_once('supplliercontroller.php');
+    include_once('suppliercontroller.php');
 class customer implements Observer{
     protected $ID;
     protected $Name;

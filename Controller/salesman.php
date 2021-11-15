@@ -5,7 +5,7 @@
   include_once('\Observer\notify.php');
   include_once('\Observer\observerinterface.php');
   include_once('manager.php');
-  include_once('supplliercontroller.php');
+  include_once('suppliercontroller.php');
 class salesman extends user implements Subject{
 
     protected $observers = [];
