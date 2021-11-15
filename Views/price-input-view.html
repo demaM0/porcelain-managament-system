@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Input an item</title>
+    <title>Submit item price</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/checkout/">
 
@@ -41,57 +41,46 @@
   <main>
     <div >
       
-      <h2><br>Input an item <br><br></h2>
+      <h2><br>Submit Item Price <br><br></h2>
       
     </div>
 
     
       <div class="col-md-7 col-lg-8">
-        <h4 class="mb-3">Item details</h4>
+        <h4 class="mb-3">Item Price</h4>
         <form class="needs-validation" novalidate>
-          <div class="row g-3">
-            <div class="col-sm-6">
-              <label for="firstName" class="form-label">Name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Name is required.
-              </div>
-            </div>
+          
 
-            <div class="col-sm-6">
-              <label for="lastName" class="form-label">Quantity</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Quantity is required.
-              </div>
-            </div>
+           
 
 
             <div class="col-12">
-              <label for="address" class="form-label">Color</label>
+              <label for="address" class="form-label">Discount</label>
               <input type="text" class="form-control" id="address" placeholder="" required>
-              <div class="invalid-feedback">
-                Please enter color.
-              </div>
+              
+              
             </div>
-
-
+            <div class="col-12">
+                <label for="address" class="form-label">Tax</label>
+                <input type="text" class="form-control" id="address" placeholder="" required>
+                
+                
+              </div>
             <div class="col-md-5">
-              <label for="country" class="form-label">Type</label>
-              <select class="form-select" id="country" required>
-                <option value="">Choose...</option>
-                <option>Tile</option>
-                <option>Bathtub</option>
-                <option>Sink</option>
-              </select>
-              <div class="invalid-feedback">
-                Please select a type.
+                <label for="country" class="form-label">Item</label>
+                <select class="form-select" id="country" required>
+                  <option value="">Choose Item... <br></option>
+                  <option>Tile</option>
+                  <option>Bathtub</option>
+                  <option>Sink</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a type.
+                </div>
               </div>
-            </div>
-
-          
-
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Save</button>
+<br>
+          <button class="w-100 btn btn-primary btn-lg" type="submit">Calculate Total</button>
+          <label for="address" class="form-label">0 EGP</label>
         </form>
       </div>
     </div>
