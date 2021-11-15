@@ -6,7 +6,7 @@
   include_once('\Observer\observerinterface.php');
   include_once('manager.php');
   include_once('suppliercontroller.php');
-class salesman extends user implements Subject{
+  class salesman extends user implements Subject{
 
     protected $observers = [];
     public function __construct()

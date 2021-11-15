@@ -6,7 +6,8 @@
     include_once('\Controller\salesman.php');
     include_once('\Controller\customercontroller.php');
     include_once('\Controller\suppliercontroller.php');
-interface Observer{
-    public function update($x);
-}
-?>
+    interface Observer{
+        public function update($x);
+    }
+    ?>
+    

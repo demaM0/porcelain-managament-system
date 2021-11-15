@@ -6,27 +6,28 @@
     include_once('\Observer\observerinterface.php');
     include_once('salesman.php');
     include_once('suppliercontroller.php');
-class customer implements Observer{
-    protected $ID;
-    protected $Name;
-    protected $Phone;
-    protected $Email;
-
-    public function __construct(Subject $W)
-    {
-        $W->addOBS($this);
-
-    }
-    public function update($x){
-        if($x==1)
+    class customernotify implements Observer{
+        protected $customer;
+        protected $msg;
+    
+        public function __construct(Subject $W,$messagebox)
         {
-            echo("Manager is talking to the customer");
+            $W->addOBS($this);
+            $this->msg = $messagebox;
         }
-        if($x==2)
-        {
-            echo("Sales man is talking to the customer");
+        public function update($x){
+            if($x==1)
+            {
+                echo("Manager sent msg:");
+                echo "<h2>" . $this->msg . "</h2>";
+            }
+            if($x==2)
+            {
+                echo("Sales man is talking to the customerlol");
+                echo "<h2>" . $this->msg . "</h2>";
+            }
+    
         }
-
     }
-}
-?>
+    ?>
+    
