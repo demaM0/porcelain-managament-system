@@ -1,5 +1,5 @@
 <?php
-
+require_once("SingleTon.php");
  class supplier {
 
     protected $ID;
@@ -8,10 +8,10 @@
     protected $Email;
     function __construct($ID)
     {
-        $con = mysqli_connect("localhost","root","","almasrya");
+        $con =DbConnection::getInstance();
         if(!$con)
         {
-          die('could not connect: ' . mysqli_error());
+          die('could not connect: ' . mysqli_error($con));
         }
         $sql="select * from supplier where ID=$ID";
         $supplierdataset = mysqli_query($con,$sql);

@@ -1,4 +1,5 @@
 <?php
+require_once("SingleTon.php");
 abstract class invoice
 {
     protected $Id;
@@ -8,10 +9,10 @@ abstract class invoice
     protected $Total;
     function __construct($Id)
     {
-        $con = mysqli_connect("localhost","root","","almasrya");
+        $con =DbConnection::getInstance();
         if(!$con)
         {
-          die('could not connect: ' . mysqli_error());
+          die('could not connect: ' . mysqli_error($con));
         }
         $sql="select * from invoice where Id=$Id";
         $invoicedataset = mysqli_query($con,$sql);

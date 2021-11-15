@@ -1,14 +1,15 @@
 <?php
+require_once("SingleTon.php");
 class itemtype{
     protected $Id;
     protected $Category;
     protected $Shape;
     function __construct($Id)
     {
-        $con = mysqli_connect("localhost","root","","almasrya");
+        $con =DbConnection::getInstance();
         if(!$con)
         {
-          die('could not connect: ' . mysqli_error());
+          die('could not connect: ' . mysqli_error($con));
         }
         $sql="select * from itemtype where Id=$Id";
         $ItemTypedataset = mysqli_query($con,$sql);

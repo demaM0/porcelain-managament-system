@@ -1,4 +1,5 @@
 <?php
+require_once("SingleTon.php");
 class transaction
 {
     protected $Id;
@@ -8,10 +9,10 @@ class transaction
     protected $ManagerID;
     public function __construct($Id)
     {
-        $con = mysqli_connect("localhost","root","","almasrya");
+        $con =DbConnection::getInstance();
         if(!$con)
         {
-          die('could not connect: ' . mysqli_error());
+          die('could not connect: ' . mysqli_error($con));
         }
         $sql="select * from transaction where Id=$Id";
         $Transactiondataset = mysqli_query($con,$sql);
