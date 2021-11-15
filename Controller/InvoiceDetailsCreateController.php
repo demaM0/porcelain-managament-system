@@ -1,6 +1,6 @@
 <?php
 require_once("SingleTon.php");
-class CreateInvoice
+class CreateInvoiceDetails
 {
 
     public function Create($InvoiceDetails)
