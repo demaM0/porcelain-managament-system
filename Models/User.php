@@ -7,6 +7,7 @@ include_once('\Controller\customercontroller.php');
 include_once('\Controller\manager.php');
 include_once('\Controller\salesman.php');
 include_once('\Controller\suppliercontroller.php');
+require_once("SingleTon.php");
 abstract class user{
 
     protected $Id;
@@ -16,12 +17,12 @@ abstract class user{
     protected $Password;
     protected $UserType;
 
-    abstract public __construct($Id)
+     function __construct($Id)
     {
-        $con = mysqli_connect("localhost","root","","almasrya");
+        $con =DbConnection::getInstance();
         if(!$con)
         {
-          die('could not connect: ' . mysqli_error());
+          die('could not connect: ' . mysqli_error($con));
         }
         $sql="select * from user where Id=$Id";
         $Userdataset = mysqli_query($con,$sql);
@@ -38,53 +39,53 @@ abstract class user{
     }
 
         #setters
-    abstract public function setPassword(string $Password)
+     public function setPassword(string $Password)
     {
         $this->Password = $Password;
     }
 
-    abstract public function setName(string $Name)
+     public function setName(string $Name)
     {
         $this->Name = $Name;
     }
-    abstract public function setPhone(string $Phone)
+     public function setPhone(string $Phone)
     {
         $this->Phone = $Phone;
     }
-    abstract public function setEmail(string $Email)
+     public function setEmail(string $Email)
     {
-        $this->Email =$Email
+        $this->Email =$Email;
     }
-    abstract public function setUserType(string $UserType)
+     public function setUserType(string $UserType)
     {
-        $this->UserType =$UserType
+        $this->UserType =$UserType;
     }
     
     #getters
-    abstract public function getId()
+     public function getId()
     {
         return $this->Id;
     }
 
-    abstract public function getName()
+     public function getName()
     {
         return $this->Name;
     }
-    abstract public function getPhone()
+     public function getPhone()
     {
         return $this->Phone;
     }
-    abstract public function getEmail()
+     public function getEmail()
     {
         return $this->Email;
     }
 
-    abstract public function getPassword()
+     public function getPassword()
     {
          
         return $this->Password;
     }
-    abstract public function getUserType()
+     public function getUserType()
     {
          
         return $this->UserType;

@@ -1,18 +1,18 @@
 <?php
-
+require_once("SingleTon.php");
 class address {
 
     protected $ID;
     protected $City;
     protected $Building;
     protected $zipCode;
-    protected $SupplierID
+    protected $SupplierID;
     public function __construct($ID)
     {
-        $con = mysqli_connect("localhost","root","","almasrya");
+        $con =DbConnection::getInstance();
         if(!$con)
         {
-          die('could not connect: ' . mysqli_error());
+          die('could not connect: ' . mysqli_error($con));
         }
         $sql="select * from address where ID=$ID";
         $addressdataset = mysqli_query($con,$sql);

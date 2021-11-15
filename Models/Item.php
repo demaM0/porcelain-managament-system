@@ -1,5 +1,7 @@
 <?php
-class items(){
+require_once("SingleTon.php");
+
+class items{
    protected $ID;
    protected $Name;
    protected $Color;
@@ -9,10 +11,10 @@ class items(){
    protected $SupplierID;
    public function __construct($ID)
    {
-    $con = mysqli_connect("localhost","root","","almasrya");
+        $con =DbConnection::getInstance();
         if(!$con)
         {
-          die('could not connect: ' . mysqli_error());
+          die('could not connect: ' . mysqli_error($con));
         }
         $sql="select * from items where ID=$ID";
         $itemsdataset = mysqli_query($con,$sql);
@@ -35,7 +37,7 @@ class items(){
     
     public function setColor($Color)
     {
-        $this->Color=$color;
+        $this->Color=$Color;
     }
 
     public function setQuantity($Quantity)
