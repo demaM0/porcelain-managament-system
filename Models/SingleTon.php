@@ -1,5 +1,5 @@
 <?php
-class DbConnection extends mysqli
+class DbConnection
  {
     private $host="localhost";
     private $username="root";
@@ -24,14 +24,14 @@ class DbConnection extends mysqli
         {
             echo "Object is their <br>";  
         }
-        return self::$instance;
+        return self::$instance->db_connection;
 
     }
     private function database_connect($database_host,$database_username,$database_password,$db_Name)
     {
-        if($connection=mysqli_connect($database_host,$database_username,$database_password,$db_Name))
+        if($this->connection=mysqli_connect($database_host,$database_username,$database_password,$db_Name))
         {
-            return $connection;
+            return $this->connection;
         }
         else
         {
