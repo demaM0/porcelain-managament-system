@@ -1,5 +1,5 @@
 <?php
-require_once('Models\SingleTon.php');
+require_once('../Models/SingleTon.php');
 class user
 {
 	public $Id;
@@ -37,7 +37,7 @@ class user
 		$result = mysqli_query($con,$s);
 		$num = mysqli_num_rows($result);
 		if($num==1){
-		header('location:viewcreate.html');
+		header('location:itemviewcreate.html');
 		#change to login menu ^^^
 		}
 		else{

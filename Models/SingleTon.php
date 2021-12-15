@@ -17,12 +17,7 @@ class DbConnection
     {
         if(self::$instance==null)
         {
-            echo "Return New Instance";
             self::$instance=new DbConnection();
-        }
-        else
-        {
-            echo "Object is their <br>";  
         }
         return self::$instance->db_connection;
 

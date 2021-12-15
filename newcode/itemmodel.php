@@ -37,27 +37,27 @@ class Items
       }
       $reg = "insert into items(Name, Color, Quantity,Price) values ('$Name', '$Color', $Quantity,$Price)";
       mysqli_query($con,$reg);
-      header('location:viewupdate.html');
+      header('location:itemviewupdate.html');
     }
     public function update()
     {
       $con =DbConnection::getInstance();
       $sql = mysqli_prepare($con,
-        "UPDATE items SET Price =? ,Quantity =? 
+        "UPDATE items SET Price =?, UpdatedAt = CURRENT_TIMESTAMP() ,Quantity =? 
         WHERE Id =?"
       );
       $sql->bind_param('iii',$this->Price, $this->Quantity, $this->Id);
       $bol = $sql->execute();
       if($bol)
       {
-        header('location:viewdelete.html');
+        header('location:itemviewdelete.html');
       }		
     }
     public function delete()
     {
       $con =DbConnection::getInstance();
       $sql = mysqli_prepare($con,
-        "UPDATE Items SET IsDeleted =? where Id=?"
+        "UPDATE items SET IsDeleted =?, UpdatedAt=CURRENT_TIMESTAMP() where Id=?"
       );
       $this->IsDeleted=1;
       $sql->bind_param('ii',$this->IsDeleted,$this->Id);
