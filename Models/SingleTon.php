@@ -19,6 +19,7 @@ class DbConnection
         {
             self::$instance=new DbConnection();
         }
+
         return self::$instance->db_connection;
 
     }

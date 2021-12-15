@@ -2,61 +2,71 @@
 require_once("SingleTon.php");
 class address {
 
-    protected $ID;
-    protected $City;
-    protected $Building;
-    protected $zipCode;
-    protected $SupplierID;
-    public function __construct($ID)
+    public $Id;
+    public $City;
+    public $Building;
+    public $ZipCode;
+    
+    public function __construct($Id)
     {
         $con =DbConnection::getInstance();
         if(!$con)
         {
           die('could not connect: ' . mysqli_error($con));
         }
-        $sql="select * from address where ID=$ID";
-        $addressdataset = mysqli_query($con,$sql);
-        if($row = mysqli_fetch_array($addressdataset))
+        $s="select * from address where Id=$Id";
+        $result = mysqli_query($con,$s);
+        $num = mysqli_num_rows($result);
+        if($row = mysqli_fetch_array($result))
         {
-          $this->ID=$row["ID"];
+          $this->Id=$row["Id"];
           $this->City=$row["City"];
           $this->Building=$row["Building"];
-          $this->zipCode=$row["zipCode"];
-          $this->SupplierID=$row["SupplierID"];
+          $this->ZipCode=$row["ZipCode"];
+          
         }
     }
-     public function setCity($City)
+    public static function createaddress($City, $Building, $ZipCode)
     {
-        $this->City = $City;
+      $con =DbConnection::getInstance();
+      if(!$con)
+      {
+        die('could not connect: ' . mysqli_error($con));
+      }
+      $reg = "insert into address(City, Building, ZipCode) values ('$City', '$Building', $ZipCode)";
+      
+      var_dump(mysqli_query($con,$reg));
+      
     }
-     public function setBuilding($Building)
+    public function update()
     {
-        $this->Building = $Building;
+      $con =DbConnection::getInstance();
+      $sql = mysqli_prepare($con,
+        "UPDATE address SET City =? ,Building =? ,ZipCode=?
+        WHERE Id =?"
+      );
+      $sql->bind_param('ssii',$this->City, $this->Building, $this->ZipCode,$this->Id);
+      $bol = $sql->execute();
+      if($bol)
+      {
+        echo("update 10/10");
+      }
     }
-     public function setzipCode($zipCode)
+    public function delete()
     {
-        $this->zipCode = $zipCode;
-    }
+      $con =DbConnection::getInstance();
+      $sql = mysqli_prepare($con,
+        "UPDATE address SET IsDeleted =? where Id=?"
+      );
+      $this->IsDeleted=1;
+      $sql->bind_param('ii',$this->IsDeleted,$this->Id);
+      $bol = $sql->execute();
+      if($bol)
+      {
+        echo("address deleted");
+      }
 
-     public function getID()
-    {
-        return $this->ID;
     }
-     public function getCity()
-    {
-        return $this->City;
-    }
-     public function getBuilding()
-    {
-        return $this->Building;
-    }
-     public function getzipCode()
-    {
-        return $this->zipCode;
-    }
-     public function getSupplierID()
-    {
-        return $this->SupplierID;
-    }
-  }
+    
+}
 ?>
