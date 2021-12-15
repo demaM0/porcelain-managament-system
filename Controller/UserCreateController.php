@@ -1,20 +1,11 @@
 <?php
-require_once("SingleTon.php");
-class CreateUser
-{
+require_once("..\Models\SingleTon.php");
+require_once("..\newcode\usermodel.php");
 
-    public function CreateUser($Name,$Phone,$Email,$Password,$UserType)
-    {
-        $con =DbConnection::getInstance();
-        if(!$con)
-        {
-          die('could not connect: ' . mysqli_error($con));
-        }
-        $reg = "insert into user(Name, Phone, Email, Password, UserType) values ('$Name', '$Phone', '$Email', '$Password', '$UserType')";
-        mysqli_query($con,$reg);
-        
-    }
+$Name = $_POST['name'];
+$Phone = $_POST['phone'];
+$Email = $_POST['email'];
+$Password = $_POST['password'];
+user::createuser($Name, $Phone, $Email,$Password)
 
-
-}  
 ?>
