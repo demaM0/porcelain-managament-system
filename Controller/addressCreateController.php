@@ -1,20 +1,9 @@
 <?php
-require_once("SingleTon.php");
-class CreateAddress
-{
+	require_once('../Models/address-model.php');
+	require_once('../Models/SingleTon.php');
+	$City = $_POST['City'];
+	$Building = $_POST['Building'];
+	$ZipCode = $_POST['ZipCode'];
+	address::createaddress($City,$Building,$ZipCode);
 
-    public function CreateAddress($City,$Building,$zipCode,$SupplierID)
-    {
-        $con =DbConnection::getInstance();
-        if(!$con)
-        {
-          die('could not connect: ' . mysqli_error($con));
-        }
-        $reg = "insert into address(City, Building, zipCode, SupplierID) values ('$City', '$Building', '$zipCode', '$SupplierID')";
-        mysqli_query($con,$reg);
-        
-    }
-
-
-}  
 ?>
