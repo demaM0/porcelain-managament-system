@@ -1,20 +1,9 @@
 <?php
-require_once("SingleTon.php");
-class CreateCustomer
-{
+	require_once('../Models/customer-model.php');
+	require_once('../Models/SingleTon.php');
+	$Name = $_POST['Name'];
+	$Phone = $_POST['Phone'];
+	$Email = $_POST['Email'];
+	customer::create($Name,$Phone,$Email);
 
-    public function CreateCustomer($Name,$Phone,$Email)
-    {
-        $con =DbConnection::getInstance();
-        if(!$con)
-        {
-          die('could not connect: ' . mysqli_error($con));
-        }
-        $reg = "insert into customer(Name, Phone, Email) values ('$Name', '$Phone', '$Email')";
-        mysqli_query($con,$reg);
-        
-    }
-
-
-}  
 ?>

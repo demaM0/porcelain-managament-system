@@ -1,29 +1,16 @@
 <?php
-require_once("SingleTon.php");
-class UpdateCustomer
-{
-    public function Update($Customer)
-    {
-        $con =DbConnection::getInstance(); 
 
-        if ($con->connect_error) 
-        {
-            die("Connection failed: " . $con->connect_error);
-        }
-        if($Customer->Name!=NULL)
-        {
-            $sql = "update customer SET Name=$Customer->Name Where ID=$Customer->ID";
-        }
-        if($Customer->Phone!=NULL)
-        {
-            $sql = "update customer SET Phone=$Customer->Phone Where ID=$Customer->ID";
-        }
-        if($Customer->Email!=NULL)
-        {
-            $sql = "update customer SET Email=$Customer->Email Where ID=$Customer->ID";
-        }
-     
-    }
-}
+    require_once('../Models/customer-model.php');   
+	require_once('../Models/SingleTon.php');
+	$Id = $_POST['Id'];
+    
+	$customer = new customer($Id);
+	$customer->Name = $_POST['Name'];
+	$customer->Phone = $_POST['Phone'];
+	$customer->Email = $_POST['Email'];
+    
+	$customer->update();
 
+
+    
 ?>
