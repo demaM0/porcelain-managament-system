@@ -17,10 +17,9 @@ class DbConnection
     {
         if(self::$instance==null)
         {
-            
             self::$instance=new DbConnection();
         }
-        
+
         return self::$instance->db_connection;
 
     }

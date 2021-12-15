@@ -44,7 +44,7 @@ class supplier
     {
       $con =DbConnection::getInstance();
       $sql = mysqli_prepare($con,
-        "UPDATE supplier SET Name =? ,Phone =? ,Email=?
+        "UPDATE supplier SET Name =? ,Phone =?, UpdatedAt=CURRENT_TIMESTAMP() ,Email=?
         WHERE Id =?"
       );
       $sql->bind_param('sisi',$this->Name, $this->Phone, $this->Email,$this->Id);
@@ -58,7 +58,7 @@ class supplier
     {
       $con =DbConnection::getInstance();
       $sql = mysqli_prepare($con,
-        "UPDATE supplier SET IsDeleted =? where Id=?"
+        "UPDATE supplier SET IsDeleted =?, UpdatedAt=CURRENT_TIMESTAMP() where Id=?"
       );
       $this->IsDeleted=1;
       $sql->bind_param('ii',$this->IsDeleted,$this->Id);
