@@ -1,11 +1,12 @@
 <?php
-require_once('Models\SingleTon.php');
+require_once('../Models/SingleTon.php');
 class supplier
 {
 	public $Id;
 	public $Name;
 	public $Email;
 	public $Phone;
+  public $IsDeleted;
 	
 
     public function __construct($Id)
@@ -23,6 +24,7 @@ class supplier
     $this->Name = $row["Name"];
     $this->Phone = $row["Phone"];
     $this->Email = $row["Email"];
+    $this->IsDeleted = $row["IsDeleted"];
     
    }
         
@@ -36,7 +38,7 @@ class supplier
       }
       $reg = "insert into supplier(Name, Phone, Email) values ('$Name', '$Phone', '$Email')";
       mysqli_query($con,$reg);
-      header('location:viewupdate.html');
+      echo("supplier created");
     }
     public function update()
     {
@@ -49,8 +51,23 @@ class supplier
       $bol = $sql->execute();
       if($bol)
       {
-        header('location:viewdelete.html');
+        echo("supplier updated");
       }		
+    }
+    public function delete()
+    {
+      $con =DbConnection::getInstance();
+      $sql = mysqli_prepare($con,
+        "UPDATE supplier SET IsDeleted =? where Id=?"
+      );
+      $this->IsDeleted=1;
+      $sql->bind_param('ii',$this->IsDeleted,$this->Id);
+      $bol = $sql->execute();
+      if($bol)
+      {
+        echo("supplier deleted");
+      }		
+
     }
  
 }  
