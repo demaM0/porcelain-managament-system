@@ -1,5 +1,5 @@
 <?php
-require_once('Models\SingleTon.php');
+require_once('../Models/SingleTon.php');
 class Items
 {
 	public $Id;
@@ -7,6 +7,7 @@ class Items
 	public $Color;
 	public $Price;
 	public $Quantity;
+  public $IsDeleted;
 
     public function __construct($id)
     {
@@ -55,21 +56,16 @@ class Items
     public function delete()
     {
       $con =DbConnection::getInstance();
-      if(!$con)
+      $sql = mysqli_prepare($con,
+        "UPDATE Items SET IsDeleted =? where Id=?"
+      );
+      $this->IsDeleted=1;
+      $sql->bind_param('ii',$this->IsDeleted,$this->Id);
+      $bol = $sql->execute();
+      if($bol)
       {
-        die('could not connect: ' . mysqli_error($con));
-      }
-    $s = "select * from items where Id  = $this->Id ";
-    $result = mysqli_query($con,$s);
-    if(!$result)
-    {
-      echo"No such item id";
-    }
-    else{
-    $reg = "DELETE FROM `items` WHERE  Id  = $this->Id ";
-       mysqli_query($con,$reg);
-    echo"Sucessfuly deleted";
-    }
+        echo("item deleted");
+      }		
 
     }
 
