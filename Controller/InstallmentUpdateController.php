@@ -1,31 +1,15 @@
 <?php
-require_once("SingleTon.php");
-class UpdateInstsallment
-{
-    public function Update($Installment)
-    {
-        $con =DbConnection::getInstance(); 
-        if(!$con)
-        {
-          die('could not connect: ' . mysqli_error($con));
-        }
 
-        if($Installment->Quantity!=NULL)
-        {
-            $sql = "update installment SET Quantity=$Installment->Quantity Where ID=$Installment->ID";
-        }
-        if($Installment->SalesManID!=NULL)
-        {
-            $sql = "update installment SET InstallmentDate=$Installment->InstallmentDate Where ID=$Installment->ID";
-        }
-        if($Installment->CustomerID!=NULL)
-        {
-            $sql = "update installment SET TransactionID=$Installment->TransactionID Where ID=$Installment->ID";
-        }
-        
-       
-        mysqli_query($con,$sql);
-    }
-}
+    require_once('../Models/installment-model.php');   
+	require_once('../Models/SingleTon.php');
+	$Id = $_POST['Id'];
+    
+	$installment = new installment($Id);
+    $installment->Quantity=$_POST['Quantity'];
+	
+    
+	$installment->update();
 
+
+    
 ?>

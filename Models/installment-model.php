@@ -2,10 +2,9 @@
 require_once("SingleTon.php");
  class installment {
 
-    protected $Id;
-    protected $Quantity;
-    protected $InstallmentDate;
-    protected $TransactionID;
+    public $Id;
+    public $Quantity;
+    
     function __construct($Id)
     {
         $con =DbConnection::getInstance();
@@ -19,38 +18,51 @@ require_once("SingleTon.php");
         {
           $this->Id=$row["Id"];
           $this->Quantity=$row["Quantity"];
-          $this->InstallmentDate=$row["InstallmentDate"];
-          $this->TransactionID=$row["TransactionID"];
+          
         }
     }
-     public function setTransactionID( $TransactionID)
+    public static function create($Quantity)
     {
-        $this->TransactionID = $TransactionID;
+      $con =DbConnection::getInstance();
+      if(!$con)
+      {
+        die('could not connect: ' . mysqli_error($con));
+      }
+      $reg = "insert into installment(Quantity) values ('$Quantity')";
+      
+      var_dump(mysqli_query($con,$reg));
+      
     }
-     public function setQuantity( $Quantity)
+    public function update()
     {
-        $this->Quantity = $Quantity;
+      $con =DbConnection::getInstance();
+      $sql = mysqli_prepare($con,
+        "UPDATE installment SET Quantity =? ,UpdatedAt =CURRENT_TIMESTAMP()
+        WHERE Id =?"
+      );
+      $sql->bind_param('ii',$this->Quantity,$this->Id);
+      $bol = $sql->execute();
+      if($bol)
+      {
+        echo("update 10/10");
+      }
     }
-     public function setInstallmentDate( $InstallmentDate)
+    public function delete()
     {
-        $this->InstallmentDate = $InstallmentDate;
+      $con =DbConnection::getInstance();
+      $sql = mysqli_prepare($con,
+        "UPDATE installment SET IsDeleted =? ,UpdatedAt =CURRENT_TIMESTAMP() where Id=?"
+      );
+      $this->IsDeleted=1;
+      $sql->bind_param('ii',$this->IsDeleted,$this->Id);
+      $bol = $sql->execute();
+      if($bol)
+      {
+        echo("installment deleted");
+      }
+
     }
 
-     public function getId()
-    {
-        return $this->id;
-    }
-     public function getQuantity()
-    {
-        return $this->Quantity;
-    }
-     public function getInstallmentDate()
-    {
-        return $this->InstallmentDate;
-    }
-     public function getTransactionID()
-    {
-        return $this->TransactionID;
-    }
+    
   }
 ?>
