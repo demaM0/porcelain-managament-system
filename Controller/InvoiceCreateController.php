@@ -1,23 +1,9 @@
 <?php
-require_once("SingleTon.php");
-class CreateInvoice
-{
-
-    public function Create($DateTimeStamp,$SalesManID,$CustomerID,$Total)
-    {
-        $con =DbConnection::getInstance();
-        if(!$con)
-        {
-          die('could not connect: ' . mysqli_error($con));
-        }
-        $reg = "insert into invoice(DateTimeStamp, SalesManID,CustomerID,Total) values ('$DateTimeStamp', '$SalesManID','$CustomerID','$Total')";
-        mysqli_query($con,$reg);
-        
-    }
-
-
-}  
-
-
+	require_once('../Models/Invoice-model.php');
+	require_once('../Models/SingleTon.php');
+	$Total = $_POST['Total'];
+  $CustomerId=$_POST['CustomerId'];
+	
+	Invoice::create($Total,$CustomerId);
 
 ?>
