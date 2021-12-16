@@ -1,11 +1,11 @@
 <?php
-require_once("..\Models\SingleTon.php");
-require_once("..\newcode\usermodel.php");
+require_once('../Models/usermodel.php');
+require_once('../Models/SingleTon.php');
 
-$Name = $_POST['name'];
-$Phone = $_POST['phone'];
-$Email = $_POST['email'];
-$Password = $_POST['password'];
+$Name = $_POST['Name'];
+$Phone = $_POST['Phone'];
+$Email = $_POST['Email'];
+$Password = $_POST['Password'];
 user::createuser($Name, $Phone, $Email,$Password)
 
 ?>

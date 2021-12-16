@@ -62,8 +62,7 @@ class user
     {
       $con =DbConnection::getInstance();
       $sql = mysqli_prepare($con,
-        "UPDATE user SET Name =? ,Phone =? ,Email =? ,Password =? 
-        WHERE Id =?"
+        "UPDATE user SET Name =? ,Phone =? ,Email =? ,Password =? ,UpdatedAt = CURRENT_TIMESTAMP() WHERE Id =?"
       );
       $sql->bind_param('sissi',$this->Name, $this->Phone, $this->Email, $this->Password, $this->Id);
       $bol = $sql->execute();
@@ -77,7 +76,7 @@ class user
 	{
 		$con =DbConnection::getInstance();
       $sql = mysqli_prepare($con,
-        "UPDATE user SET IsDeleted =? where Id=?"
+        "UPDATE user SET IsDeleted =? ,UpdatedAt = CURRENT_TIMESTAMP() where Id=?"
       );
       $this->IsDeleted=1;
       $sql->bind_param('ii',$this->IsDeleted,$this->Id);
