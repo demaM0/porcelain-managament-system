@@ -1,19 +1,8 @@
 <?php
-require_once("SingleTon.php");
-class CreateInstallment
-{
+	require_once('../Models/installment-model.php');
+	require_once('../Models/SingleTon.php');
+	$Quantity = $_POST['Quantity'];
+	
+	installment::create($Quantity);
 
-    public function Create($Quantity,$InstallmentDate,$TransactionID)
-    {
-        $con =DbConnection::getInstance();
-        if(!$con)
-        {
-          die('could not connect: ' . mysqli_error($con));
-        }
-        $reg = "insert into installment(Quantity, InstallmentDate,TransactionID) values ('$Quantity', '$InstallmentDate','$TransactionID')";
-        mysqli_query($con,$reg);
-        
-    }
-
-
-}  
+?>
