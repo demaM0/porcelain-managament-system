@@ -1,29 +1,10 @@
+
 <?php
+require_once('../Models/usermodel.php');
+	$id = $_POST['id'];
+	$login = new user($id);
+	$login->Id = $_POST['id'];
+	$login->Password = $_POST['pass'];
+	$login->login();
 
-session_start();
-
-
-$con = mysqli_connect('localhost','root','');
-mysqli_select_db($con,'almasrya');
-
-$Id = $_POST['Id'];
-$password = $_POST['password'];
-$s = "select * from users where Id = '$Id' && password = '$password'";
-
-$result = mysqli_query($con,$s);
-
-$num = mysqli_num_rows($result);
-
-if($num==1){
-	
-	
-	header('location:Index.html');
-}
-else{
-
-	echo"Wrong username or password";
-
-
-
-
-}
+?>

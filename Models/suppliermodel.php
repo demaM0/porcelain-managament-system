@@ -29,7 +29,7 @@ class supplier
    }
         
     }
-    public static function createsupplier($Name, $Phone, $Email)
+    public static function create($Name, $Phone, $Email)
     {
       $con =DbConnection::getInstance();
       if(!$con)

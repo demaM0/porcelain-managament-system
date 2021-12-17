@@ -20,7 +20,7 @@ class Category{
           $this->ParentId=$row["ParentId"];
         }
     }
-    public static function createCategory($Name, $ParentId)
+    public static function create($Name, $ParentId)
     {
       $con =DbConnection::getInstance();
       if(!$con)
@@ -33,7 +33,7 @@ class Category{
       #header('');
     }
 
-   public function updateCategory()
+   public function update()
     {
       $con =DbConnection::getInstance();
       $sql = mysqli_prepare($con,
@@ -47,7 +47,7 @@ class Category{
       }		
     }
 
-	public function deleteCategory()
+	public function delete()
 	{
 		$con =DbConnection::getInstance();
       $sql = mysqli_prepare($con,

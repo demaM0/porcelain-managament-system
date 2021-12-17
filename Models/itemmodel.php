@@ -28,7 +28,7 @@ class Items
    }
         
     }
-    public static function createitem($Name, $Color, $Quantity,$Price)
+    public static function create($Name, $Color, $Quantity,$Price)
     {
       $con =DbConnection::getInstance();
       if(!$con)
@@ -68,9 +68,6 @@ class Items
       }		
 
     }
-
-    
-
 
 }  
 

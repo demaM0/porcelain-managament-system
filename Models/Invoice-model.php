@@ -3,7 +3,6 @@ require_once("SingleTon.php");
 class invoice
 {
     public $Id;
-    
     public $CustomerId;
     public $Total;
     function __construct($Id)
@@ -31,7 +30,7 @@ class invoice
       }
       $reg = "insert into invoice(Total,CustomerId) values ($Total,$CustomerId)";
       
-      var_dump(mysqli_query($con,$reg));
+      mysqli_query($con,$reg);
       
     }
     public function update()
