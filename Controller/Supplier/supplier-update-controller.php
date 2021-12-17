@@ -1,5 +1,5 @@
 <?php
-	require_once('suppliermodel.php');
+	require_once('../../Models/supplier-model.php');
 	$Id = $_POST['id'];
 	$supplier = new supplier($Id);
 	$supplier->Name = $_POST['Name'];
