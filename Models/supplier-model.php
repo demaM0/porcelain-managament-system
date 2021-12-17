@@ -1,5 +1,5 @@
 <?php
-require_once('../Models/SingleTon.php');
+require_once('SingleTon.php');
 class supplier
 {
 	public $Id;
