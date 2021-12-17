@@ -1,7 +1,7 @@
 
 <?php
-	require_once('itemmodel.php');
-	require_once('../Models/SingleTon.php');
+	require_once('../../Models/item-model.php');
+	require_once('../../Models/SingleTon.php');
 	$Name = $_POST['name'];
 	$Color = $_POST['color'];
 	$Price = $_POST['price'];

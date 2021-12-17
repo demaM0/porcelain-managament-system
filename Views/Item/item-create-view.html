@@ -4,8 +4,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <title>Create Item</title>
-    <link rel="stylesheet" type="text/css" href="LoginStyle.css">
+    <link rel="stylesheet" type="text/css" href="../LoginStyle.css">
 </head>
+
 <body>
 
     <div id="container3">
@@ -15,12 +16,12 @@
 
 
                 <hr>
-                <form action="itemcreatecontroller.php" method="POST">
-							<label></label>
+                <form action="../../Controller/Item/item-create-controller.php" method="POST">
+                    <label></label>
                     <input type="text" name="name" id="name" placeholder="Enter item name">
-					<input type="text" name="color" id="color" placeholder="Enter item color">
-					<input type="number" name="price" id="price" placeholder="Enter item price">
-					<input type="number" name="quantity" id="quantity" placeholder="Enter item quantity">
+                    <input type="text" name="color" id="color" placeholder="Enter item color">
+                    <input type="number" name="price" id="price" placeholder="Enter item price">
+                    <input type="number" name="quantity" id="quantity" placeholder="Enter item quantity">
                     <button type="submit" name="notify" value="post"> Create </button>
                 </form>
             </div>
