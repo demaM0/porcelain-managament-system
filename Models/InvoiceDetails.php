@@ -1,10 +1,10 @@
 <?php
 require_once("SingleTon.php");
-class invoicedetails
+class InvoiceDetails
 {
     protected $Id;
-    protected $ItemID;
-    protected $InvoiceID;
+    protected $ItemId;
+    protected $InvoiceId;
     protected $Quantity;
     protected $Total;
     function __construct($Id)
@@ -25,29 +25,47 @@ class invoicedetails
           $this->Total=$row["Total"];
         }
     }
-    public function getId()
+
+    public static function create($ItemId, $InvoiceId, $Quantity,$Total)
     {
-        return $this->Id;
+      $con =DbConnection::getInstance();
+      if(!$con)
+      {
+        die('could not connect: ' . mysqli_error($con));
+      }
+      $reg = "insert into invoicedetails (ItemId, InvoiceId, Quantity, Total) values ($ItemId, $InvoiceId, '$Quantity', '$Total')";
+      mysqli_query($con,$reg);
+      #header('');
     }
-    public function getItemID()
+
+   public function update()
     {
-        return $this->ItemID;
+      $con =DbConnection::getInstance();
+      $sql = mysqli_prepare($con,
+        "UPDATE invoicedetails SET ItemId =? ,InvoiceId =? ,Quantity =? ,Total =? ,UpdatedAt = CURRENT_TIMESTAMP() WHERE Id =?"
+      );
+      $sql->bind_param('iiiii',$this->ItemId, $this->InvoiceId, $this->Quantity, $this->Total, $this->Id);
+      $bol = $sql->execute();
+      if($bol)
+      {
+        #header('');
+      }		
     }
-    public function getInvoiceID()
-    {
-        return $this->InvoiceID;
-    }
-    public function setQuantity(int $Quantity)
-    {
-        $this->Quantity = $Quantity;
-    }
-    public function getQuantity()
-    {
-        return $this->Quantity;
-    }
-    public function getTotal()
-    {
-        return $this->Total;  
-    }
+
+	public function delete()
+	{
+		$con =DbConnection::getInstance();
+      $sql = mysqli_prepare($con,
+        "UPDATE invoicedetails SET IsDeleted =? ,UpdatedAt = CURRENT_TIMESTAMP() where Id=?"
+      );
+      $this->IsDeleted=1;
+      $sql->bind_param('ii',$this->IsDeleted,$this->Id);
+      $bol = $sql->execute();
+      if($bol)
+      {
+        echo("user deleted");
+      }
+
+	}
 }
 ?>

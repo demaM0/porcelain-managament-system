@@ -1,19 +1,11 @@
 <?php
-require_once("SingleTon.php");
-class CreateInvoiceDetails
-{
-
-    public function Create($ItemID,$InvoiceID,$Quantity,$Total)
-    {
-        $con =DbConnection::getInstance();
-        if(!$con)
-        {
-          die('could not connect: ' . mysqli_error($con));
-        }
-        $reg = "insert into invoicedetails(ItemID, InvoiceID,Quantity,Total) values ('$ItemID', '$InvoiceID->SalesManID','$Quantity','$Total')";
-        mysqli_query($con,$reg);
-        
-    }
-
-
-}  
+require_once('../Models/InvoiceDetails.php');
+require_once('../Models/itemmodel.php');
+	require_once('../Models/SingleTon.php');
+	$ItemId = $_POST['ItemId'];
+	$InvoiceId = $_POST['InvoiceId'];
+	$Quantity = $_POST['Quantity'];
+	$item = new items($ItemId);
+  	$Total = $Quantity * $item->Price;
+	InvoiceDetails::create($ItemId, $InvoiceId, $Quantity,$Total);
+?>
