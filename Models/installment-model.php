@@ -30,7 +30,7 @@ require_once("SingleTon.php");
       }
       $reg = "insert into installment(Quantity) values ('$Quantity')";
       
-      var_dump(mysqli_query($con,$reg));
+      mysqli_query($con,$reg);
       
     }
     public function update()

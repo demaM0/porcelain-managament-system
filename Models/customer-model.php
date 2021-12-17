@@ -1,11 +1,5 @@
 <?php
- /*include_once('\Observer\notify.php');
- include_once('\Observer\observerinterface.php');
- include_once('\Observer\subjectinterface.php');
- include_once('\Controller\customercontroller.php');
- include_once('\Controller\manager.php');
- include_once('\Controller\salesman.php');
- include_once('\Controller\suppliercontroller.php');*/
+
  require_once("SingleTon.php");
  class customer {
 

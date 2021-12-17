@@ -1,6 +1,6 @@
 <?php
 require_once("SingleTon.php");
-class address {
+class address  {
 
     public $Id;
     public $City;
@@ -26,7 +26,7 @@ class address {
           
         }
     }
-    public static function createaddress($City, $Building, $ZipCode)
+    public static function create($City, $Building, $ZipCode)
     {
       $con =DbConnection::getInstance();
       if(!$con)

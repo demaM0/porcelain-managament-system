@@ -46,7 +46,7 @@ class user
 
 	}
 
-	public static function createuser($Name, $Phone, $Email,$Password)
+	public static function create($Name, $Phone, $Email,$Password)
     {
       $con =DbConnection::getInstance();
       if(!$con)
@@ -58,7 +58,7 @@ class user
       #header('');
     }
 
-   public function userupdate()
+   public function update()
     {
       $con =DbConnection::getInstance();
       $sql = mysqli_prepare($con,
@@ -72,7 +72,7 @@ class user
       }		
     }
 
-	public function userdelete()
+	public function delete()
 	{
 		$con =DbConnection::getInstance();
       $sql = mysqli_prepare($con,
