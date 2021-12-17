@@ -11,17 +11,16 @@
     <div id="container3">
         <div id="container">
             <div id="box">
-                <h1 id="formHeader"> Update Item </h1>
+                <h1 id="formHeader"> Create Item </h1>
 
 
                 <hr>
-                <form action="../../Controller/addressUpdateController.php" method="POST">
+                <form action="../../Controller/Address/address-create-controller.php" method="POST">
 							<label></label>
-					<input type="number" name="Id" id="Id" placeholder="Enter address id">
-					<input type="text" name="City" id="City" placeholder="Enter address City">
-					<input type="text" name="Building" id="Building" placeholder="Enter address Building">
-                    <input type="number" name="ZipCode" id="ZipCode" placeholder="Enter address ZipCode">
-                    <button type="submit" name="notify" value="post"> Update </button>
+                    <input type="text" name="City" id="City" placeholder="Enter City ">
+					<input type="text" name="Building" id="Building" placeholder="Enter Building ">
+					<input type="number" name="ZipCode" id="ZipCode" placeholder="Enter ZipCode ">
+                    <button type="submit" name="notify" value="post"> Create </button>
                 </form>
             </div>
         </div>
