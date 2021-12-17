@@ -1,6 +1,6 @@
 <?php
-require_once('../Models/InvoiceDetails.php');   
-require_once('../Models/SingleTon.php');
+require_once('../../Models/InvoiceDetails-model.php');
+require_once('../../Models/SingleTon.php'); 
 $id = $_POST['Id'];
 $invoiceDetails = new InvoiceDetails($id);
 $invoiceDetails->ItemId = $_POST['ItemId'];

@@ -1,7 +1,7 @@
 <?php
-require_once('../Models/InvoiceDetails.php');
-require_once('../Models/itemmodel.php');
-	require_once('../Models/SingleTon.php');
+require_once('../../Models/InvoiceDetails-model.php');
+require_once('../../Models/itemmodel.php');
+require_once('../../Models/SingleTon.php');
 	$ItemId = $_POST['ItemId'];
 	$InvoiceId = $_POST['InvoiceId'];
 	$Quantity = $_POST['Quantity'];

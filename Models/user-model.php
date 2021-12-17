@@ -1,5 +1,5 @@
 <?php
-require_once('../Models/SingleTon.php');
+require_once('SingleTon.php');
 class user
 {
 	public $Id;
@@ -11,22 +11,23 @@ class user
 
     public function __construct($id)
     {
-        $con =DbConnection::getInstance();
-        if(!$con)
-        {
-          die('could not connect: ' . mysqli_error($con));
-        }
-		$s = "select * from user where Id  = $id ";
-		$result = mysqli_query($con,$s);
-		$num = mysqli_num_rows($result);
-		if($num == 1 && $row = mysqli_fetch_assoc($result)){
-			$this->Id = $id;
-			$this->Name = $row["Name"];
-			$this->Phone = $row["Phone"];
-			$this->Email = $row["Email"];
-			$this->Password = $row["Password"];
-		}
+      $con =DbConnection::getInstance();
+      if(!$con)
+      {
+        die('could not connect: ' . mysqli_error($con));
+      }
+		  $s = "select * from user where Id  = $id ";
+		  $result = mysqli_query($con,$s);
+		  $num = mysqli_num_rows($result);
+		  if($num == 1 && $row = mysqli_fetch_assoc($result)){
+			  $this->Id = $id;
+			  $this->Name = $row["Name"];
+			  $this->Phone = $row["Phone"];
+			  $this->Email = $row["Email"];
+			  $this->Password = $row["Password"];
+		  }
 	}
+  
 	public function login(){
         $con =DbConnection::getInstance();
         if(!$con)
