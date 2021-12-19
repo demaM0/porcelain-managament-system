@@ -21,6 +21,22 @@ require_once("SingleTon.php");
           
         }
     }
+    public static function assigntransaction($TransactionId){
+      $con =DbConnection::getInstance();
+        if(!$con)
+        {
+          die('could not connect: ' . mysqli_error($con));
+
+        } 
+        //$query = "SELECT Max(Id) FROM users";
+        $query = mysqli_insert_id($con);
+        
+        $reg = "insert into transactioninstallment ( InstallmentId, TransactionId ) values ($query,$TransactionId);";
+        echo($query);
+        echo($TransactionId);
+        var_dump(mysqli_query($con,$reg));
+        
+  }
     public static function create($Quantity)
     {
       $con =DbConnection::getInstance();

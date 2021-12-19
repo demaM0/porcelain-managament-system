@@ -5,5 +5,8 @@
 	$FullPrice = $_POST['fullprice'];
 	$SupplierId = $_POST['supplierid'];
 	$ManagerId = $_POST['managerid'];
+
+	
 	transaction::create($FullPrice,$SupplierId,$ManagerId);
+	
 ?>

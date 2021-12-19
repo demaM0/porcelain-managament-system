@@ -9,7 +9,7 @@ class user
 	public $Password;
 	public $IsDeleted;
 
-  public $JobTitleId;
+  //public $JobTitleId;
 
     public function __construct($id)
     {
