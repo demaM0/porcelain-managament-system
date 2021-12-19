@@ -8,7 +8,21 @@ $Email = $_POST['Email'];
 $Password = sha1($_POST['Password']);
 
 $JobTitleId = $_POST['JobTitleId'];
-user::create($Name, $Phone, $Email,$Password);
+$con =DbConnection::getInstance();
+        if(!$con)
+        {
+          die('could not connect: ' . mysqli_error($con));
+        }
+	$s = "select * from jobtitle where Id  = '$JobTitleId' ";
+	$result = mysqli_query($con,$s);
+	$num = mysqli_num_rows($result);
 
-user::assignjobtitle($JobTitleId);
+	if($num==1){
+		user::create($Name, $Phone, $Email,$Password);
+        user::assignjobtitle($JobTitleId);
+	}
+	else{
+	echo"this job title doesnt exist";
+	} 
+
 ?>

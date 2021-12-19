@@ -28,6 +28,7 @@ class transaction
    }
         
     }
+    
     public static function create($FullPrice, $SupplierId, $ManagerId)
     {
       $con =DbConnection::getInstance();
