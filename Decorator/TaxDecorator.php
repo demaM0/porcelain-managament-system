@@ -2,14 +2,10 @@
 include_once("DecoratorInvoice.php");
 class Tax extends Decoratorinvoice
 {
-    protected $tax;
-    public function settax($price)
-    {
-        $this->tax = $price;
-    }
+    protected $tax = 1.14;
     public function adjustprice(): float
     {
-        return $this->tax + parent::adjustprice();
+        return $this->tax * parent::adjustprice();
     }
 }
 ?>

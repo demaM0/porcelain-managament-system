@@ -3,14 +3,14 @@ include_once("CalculateInvoiceInterface.php");
 include_once("\Models\Item.php");
 class BaseAMOUNT implements UpgradeINVOICE
 {
-    protected $item;
-    public function __construct($item)
+    protected $totalPrice;
+    public function __construct($totalPrice)
     {
-        $this->item = $item; 
+        $this->totalPrice = $totalPrice; 
     }
     public function adjustprice():float
     {
-        return $this->item->price;
+        return $this->totalPrice;
     }
 }
 ?>
