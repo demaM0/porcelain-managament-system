@@ -1,5 +1,6 @@
 <?php 
 require_once('../Models/SingleTon.php');
+require_once('../Decorator/taxFacade.php');
 require_once('../Models/InvoiceDetails-model.php');
 session_start();
       $con =DbConnection::getInstance();
@@ -10,8 +11,6 @@ session_start();
 	
 if(isset($_POST["add_to_cart"]))
 {
-	if(isset($_SESSION["shopping_cart"]))
-	{
 		$item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
 		if(!in_array($_GET["id"], $item_array_id))
 		{
@@ -23,54 +22,23 @@ if(isset($_POST["add_to_cart"]))
 				'item_quantity'		=>	$_POST["quantity"]
 			);
 			$_SESSION["shopping_cart"][$count] = $item_array;
-			$Id			=	$_GET["id"];
-			$Price		=	$_POST["price"];
-			$Quant		=	$_POST["quantity"];
-			$Total = $Price*$Quant;
-			InvoiceDetails::create($Id,$Quant,$Total);
 			echo '<script>window.location="shoppingcart.php"</script>';
 		}
 		else
 		{
 			echo '<script>alert("Item Already Added")</script>';
 		}
-	}
-	else
-	{
-		$item_array = array(
-			'item_id'			=>	$_GET["id"],
-			'item_name'			=>	$_POST["name"],
-			'item_price'		=>	$_POST["price"],
-			'item_quantity'		=>	$_POST["quantity"]
-		);
-		$_SESSION["shopping_cart"][0] = $item_array;
-		$Id	= $_GET["id"];
-		$Price = $_POST["price"];
-		$Quant = $_POST["quantity"];
-		$Total = $Price*$Quant;
-		InvoiceDetails::create($Id,$Quant,$Total);
-		echo '<script>window.location="shoppingcart.php"</script>';
-	}
+	
 }
 
 if(isset($_GET["action"]))
 {
 	if($_GET["action"] == "delete")
 	{
-		$query = "SELECT * FROM invoicedetails ";
-		$result = mysqli_query($con, $query);
-		if(mysqli_num_rows($result) > 0)
-		{
-			while($row = mysqli_fetch_array($result))
-			{
-				$IdDelete = $row["Id"];
-			}
-		}
 		foreach($_SESSION["shopping_cart"] as $keys => $values)
 		{
 			if($values["item_id"] == $_GET["id"])
 			{
-				InvoiceDetails::physicaldelete($IdDelete);
 				unset($_SESSION["shopping_cart"][$keys]);
 				echo '<script>window.location="shoppingcart.php"</script>';
 			}
@@ -160,11 +128,16 @@ if(isset($_GET["action"]))
 					</tr>
 					<?php
 							$total = $total + ($values["item_quantity"] * $values["item_price"]);
+							$taxcalc = new TaxFacade($total);
+							
 						}
 					?>
 					<tr>
 						<td colspan="3" align="right">Total</td>
-						<td align="right">$ <?php echo number_format($total, 2); ?></td>
+						<td align="right">$<?php echo number_format($total, 2) . " + " . number_format($taxcalc->display() - $total, 2) . " tax " ; ?></td>
+						<td colspan="3" align="right">Total</td>
+						<td align="right">$<?php echo number_format($taxcalc->display(), 2); ?></td>
+			
 						<td></td>
 					</tr>
 					<?php
@@ -172,9 +145,8 @@ if(isset($_GET["action"]))
 					?>
 						
 				</table>
-				<form action="invoice-create-controller2.php" method="POST">
-
-						<input type="hidden" name="total" value="<?php echo $total?>" />
+				<form action="../Controller/Invoice/invoice-create-controller.php" method="POST">
+						<input type="hidden" name="total" value="<?php echo $taxcalc->display()?>" />
 						<input type="text" name="id" id="id" placeholder="Enter customer ID">
 						<input type="submit" name="buy" style="margin-top:5px;" class="btn btn-success" value="Buy" />			
 				</form>

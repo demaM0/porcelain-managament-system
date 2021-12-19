@@ -1,9 +1,9 @@
 <?php
 
-include_once("BaseAmount");
-include_once("DecoratorInvoice");
-include_once("DiscountDecorator");
-include_once("CalculateInvoiceInterface");
+include_once("BaseAmount.php");
+include_once("DecoratorInvoice.php");
+include_once("DiscountDecorator.php");
+include_once("CalculateInvoiceInterface.php");
 
 class DiscountFacade
 {
