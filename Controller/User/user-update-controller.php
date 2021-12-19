@@ -6,7 +6,7 @@ $user = new user($id);
 $user->Name = $_POST['Name'];
 $user->Phone = $_POST['Phone'];
 $user->Email = $_POST['Email'];
-$user->Password = $_POST['Password'];
+$user->Password = sha1($_POST['Password']);
 $user->update();
 
 ?>
