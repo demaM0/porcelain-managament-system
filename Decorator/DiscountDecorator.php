@@ -5,11 +5,14 @@ class Discount extends Decoratorinvoice
     protected $discount;
     public function setdiscount($priceD)
     {
-        $this->discount = $priceD;
+        $this->discount = $priceD/100;
     }
-    public function operation(): float
+    public function adjustprice(): float
     {
-        return parent::adjustprice() - $this->discount;
+        $Totalprice = parent::adjustprice();
+        $subtract = (parent::adjustprice() * $this->discount);
+        $Totalprice = $Totalprice - $subtract; 
+        return $Totalprice;
     }
 }
 
