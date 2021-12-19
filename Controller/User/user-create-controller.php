@@ -6,6 +6,9 @@ $Name = $_POST['Name'];
 $Phone = $_POST['Phone'];
 $Email = $_POST['Email'];
 $Password = sha1($_POST['Password']);
-user::create($Name, $Phone, $Email,$Password)
 
+$JobTitleId = $_POST['JobTitleId'];
+user::create($Name, $Phone, $Email,$Password);
+
+user::assignjobtitle($JobTitleId);
 ?>

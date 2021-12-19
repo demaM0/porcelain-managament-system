@@ -21,6 +21,9 @@ class userjobtitle {
       }
   }
 
+ 
+  
+
     public static function create($Name)
     {
       $con =DbConnection::getInstance();
@@ -28,16 +31,17 @@ class userjobtitle {
       {
         die('could not connect: ' . mysqli_error($con));
       }
-      $reg = "insert into userjobtitle (Name) values ('$Name')";
+      $reg = "insert into jobtitle (Name) values ('$Name')";
       mysqli_query($con,$reg);
       #header('');
     }
+    
 
     public function update()
     {
       $con =DbConnection::getInstance();
       $sql = mysqli_prepare($con,
-        "UPDATE userjobtitle SET Name =? ,UpdatedAt = CURRENT_TIMESTAMP() WHERE Id =?"
+        "UPDATE jobtitle SET Name =? ,UpdatedAt = CURRENT_TIMESTAMP() WHERE Id =?"
       );
       $sql->bind_param('si',$this->Name, $this->Id);
       $bol = $sql->execute();
@@ -51,7 +55,7 @@ class userjobtitle {
 	{
 		$con =DbConnection::getInstance();
       $sql = mysqli_prepare($con,
-        "UPDATE userjobtitle SET IsDeleted =? ,UpdatedAt = CURRENT_TIMESTAMP() where Id=?"
+        "UPDATE jobtitle SET IsDeleted =? ,UpdatedAt = CURRENT_TIMESTAMP() where Id=?"
       );
       $this->IsDeleted=1;
       $sql->bind_param('ii',$this->IsDeleted,$this->Id);

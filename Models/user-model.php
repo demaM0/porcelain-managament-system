@@ -9,6 +9,8 @@ class user
 	public $Password;
 	public $IsDeleted;
 
+  public $JobTitleId;
+
     public function __construct($id)
     {
       $con =DbConnection::getInstance();
@@ -46,6 +48,21 @@ class user
 		}  
 
 	}
+  public static function assignjobtitle($JobTitleId){
+    $con =DbConnection::getInstance();
+      if(!$con)
+      {
+        die('could not connect: ' . mysqli_error($con));
+      } 
+      //$query = "SELECT Max(Id) FROM users";
+      $query = mysqli_insert_id($con);
+      $reg = "insert into userjobtitle ( UserId, JobTitleId ) values ($query,$JobTitleId);";
+      echo($query);
+      echo($JobTitleId);
+      var_dump(mysqli_query($con,$reg));
+      
+}
+
 
 	public static function create($Name, $Phone, $Email,$Password)
     {
