@@ -1,8 +1,8 @@
 <?php
-include_once("BaseAmount");
-include_once("DecoratorInvoice");
-include_once("TaxDecorator");
-include_once("CalculateInvoiceInterface");
+include_once("BaseAmount.php");
+include_once("DecoratorInvoice.php");
+include_once("TaxDecorator.php");
+include_once("CalculateInvoiceInterface.php");
 
 class TaxFacade
 {
