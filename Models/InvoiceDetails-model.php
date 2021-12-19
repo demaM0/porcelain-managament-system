@@ -4,7 +4,6 @@ class InvoiceDetails
 {
     protected $Id;
     protected $ItemId;
-    protected $InvoiceId;
     protected $Quantity;
     protected $Total;
     function __construct($Id)
@@ -20,20 +19,19 @@ class InvoiceDetails
         {
           $this->Id=$row["Id"];
           $this->ItemID=$row["ItemID"];
-          $this->InvoiceID=$row["InvoiceID"];
           $this->Quantity=$row["Quantity"];
           $this->Total=$row["Total"];
         }
     }
 
-    public static function create($ItemId, $InvoiceId, $Quantity,$Total)
+    public static function create($ItemId, $Quantity,$Total)
     {
       $con =DbConnection::getInstance();
       if(!$con)
       {
         die('could not connect: ' . mysqli_error($con));
       }
-      $reg = "insert into invoicedetails (ItemId, InvoiceId, Quantity, Total) values ($ItemId, $InvoiceId, '$Quantity', '$Total')";
+      $reg = "insert into invoicedetails (ItemId, Quantity, Total) values ($ItemId, '$Quantity', '$Total')";
       mysqli_query($con,$reg);
       #header('');
     }
@@ -67,5 +65,15 @@ class InvoiceDetails
       }
 
 	}
+  public static function physicaldelete($Id)
+  {
+    $con =DbConnection::getInstance();
+    if(!$con)
+    {
+      die('could not connect: ' . mysqli_error($con));
+    }
+    $reg = "DELETE FROM invoicedetails WHERE Id = $Id";
+    mysqli_query($con,$reg);
+  }
 }
 ?>
