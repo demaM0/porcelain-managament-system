@@ -172,7 +172,10 @@ if(isset($_GET["action"]))
 					?>
 						
 				</table>
-				<form action="invoice-create-controller.php" method="POST">
+				<form action="invoice-create-controller2.php" method="POST">
+
+						<input type="hidden" name="total" value="<?php echo $total?>" />
+						<input type="text" name="id" id="id" placeholder="Enter customer ID">
 						<input type="submit" name="buy" style="margin-top:5px;" class="btn btn-success" value="Buy" />			
 				</form>
 			</div>
