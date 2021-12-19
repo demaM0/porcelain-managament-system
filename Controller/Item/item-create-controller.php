@@ -6,7 +6,9 @@
 	$Color = $_POST['color'];
 	$Price = $_POST['price'];
 	$Quantity = $_POST['quantity'];
-	Items::create($Name,$Color,$Quantity,$Price);
+	$SupplierId = $_POST['SupplierId'];
+	Items::create($Name,$Color,$Quantity,$Price,$SupplierId);
+	Items::itemsupplier($SupplierId);
 	
 
 

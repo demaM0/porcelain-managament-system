@@ -38,17 +38,23 @@ class address  {
       $reg="insert into supplieraddress(SupplierId,AddressId) values ($id,$s)";
       var_dump(mysqli_query($con,$reg));
     }
-    public static function create($City, $Building, $ZipCode)
+    public static function create($City, $Building, $ZipCode,$id)
     {
       $con =DbConnection::getInstance();
       if(!$con)
       {
         die('could not connect: ' . mysqli_error($con));
       }
+      $s = "select * from supplier where Id  = $id ";
+      $result = mysqli_query($con,$s);
+      $num = mysqli_num_rows($result);
+    if($num==1)
+    {
+
       $reg = "insert into address(City, Building, ZipCode) values ('$City', '$Building', $ZipCode)";
       
       var_dump(mysqli_query($con,$reg));
-       
+    }  
       
     }
     public function update()
