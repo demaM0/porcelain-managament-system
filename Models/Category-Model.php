@@ -20,18 +20,35 @@ class Category{
           $this->ParentId=$row["ParentId"];
         }
     }
-    public static function create($Name, $ParentId)
+    public static function itemcategory($id)
     {
       $con =DbConnection::getInstance();
       if(!$con)
       {
         die('could not connect: ' . mysqli_error($con));
       }
-
-      $reg = "insert into category (Name, ParentId) values ('$Name', $ParentId)";
-      mysqli_query($con,$reg);
-      #header('');
+      $s= mysqli_insert_id($con); 
+      echo($id);
+      $reg="insert into itemcategory(CategoryId,ItemId) values ($s,$id)";
+      var_dump(mysqli_query($con,$reg));
     }
+    public static function create($Name, $ParentId,$id)
+    {
+      $con =DbConnection::getInstance();
+      if(!$con)
+      {
+        die('could not connect: ' . mysqli_error($con));
+      }
+      $s = "select * from items where Id  = $id ";
+      $result = mysqli_query($con,$s);
+      $num = mysqli_num_rows($result);
+      if($num==1)
+      {
+         $reg = "insert into category (Name, ParentId) values ('$Name', $ParentId)";
+          var_dump( mysqli_query($con,$reg));
+           #header('');
+      }
+  }
 
    public function update()
     {
