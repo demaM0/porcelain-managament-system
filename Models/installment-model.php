@@ -21,7 +21,7 @@ require_once("SingleTon.php");
           
         }
     }
-    public static function assigntransaction($TransactionId){
+    public static function transactioninstallment($TransactionId){
       $con =DbConnection::getInstance();
         if(!$con)
         {
@@ -37,17 +37,22 @@ require_once("SingleTon.php");
         var_dump(mysqli_query($con,$reg));
         
   }
-    public static function create($Quantity)
+    public static function create($Quantity,$TransactionId)
     {
       $con =DbConnection::getInstance();
       if(!$con)
       {
         die('could not connect: ' . mysqli_error($con));
       }
+      $s = "select * from transaction where Id  = $TransactionId ";
+      $result = mysqli_query($con,$s);
+      $num = mysqli_num_rows($result);
+    if($num==1)
+    {
       $reg = "insert into installment(Quantity) values ('$Quantity')";
       
       mysqli_query($con,$reg);
-      
+    }
     }
     public function update()
     {
