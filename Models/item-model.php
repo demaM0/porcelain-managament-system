@@ -8,6 +8,7 @@ class Items
 	public $Price;
 	public $Quantity;
   public $IsDeleted;
+  public $Image;
 
     public function __construct($id)
     {
@@ -25,6 +26,7 @@ class Items
     $this->Color = $row["Color"];
     $this->Price = $row["Price"];
     $this->Quantity = $row["Quantity"];
+    $this->Image = $row["Image"];
    }
         
     }
@@ -89,9 +91,32 @@ class Items
       }		
 
     }
+    public static function selectall()
+    {
+      $con =DbConnection::getInstance();
+      if(!$con)
+      {
+        die('could not connect: ' . mysqli_error($con));
+      }
+      $query = "SELECT * FROM items ";
+      $result = mysqli_query($con, $query);
+      $num = mysqli_num_rows($result);
+      $itemsarray = array();
+      if($num>0)
+      {
+        while($row = mysqli_fetch_array($result))
+        {
+          if($row["IsDeleted"]==0)
+          {
+            $itemloop = new Items($row["Id"]);
+            array_push($itemsarray,$itemloop);
+          }
+        }
+      }
+      return $itemsarray;
 
+
+
+  }
 }  
-
-
-
 ?>
