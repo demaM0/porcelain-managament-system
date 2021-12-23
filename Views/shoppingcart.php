@@ -1,6 +1,6 @@
 <?php 
 require_once('../Models/SingleTon.php');
-require_once('shopping-cart-controller.php');
+require_once('../Controller/shopping-cart-controller.php');
 require_once('../Decorator/taxFacade.php');
 require_once('../Models/InvoiceDetails-model.php');
 session_start();
