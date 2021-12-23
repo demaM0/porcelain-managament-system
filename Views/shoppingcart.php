@@ -1,5 +1,6 @@
 <?php 
 require_once('../Models/SingleTon.php');
+require_once('shopping-cart-controller.php');
 require_once('../Decorator/taxFacade.php');
 require_once('../Models/InvoiceDetails-model.php');
 session_start();
@@ -11,6 +12,8 @@ session_start();
 	
 if(isset($_POST["add_to_cart"]))
 {
+	if(isset($_SESSION["shopping_cart"]))
+	{
 		$item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
 		if(!in_array($_GET["id"], $item_array_id))
 		{
@@ -28,6 +31,17 @@ if(isset($_POST["add_to_cart"]))
 		{
 			echo '<script>alert("Item Already Added")</script>';
 		}
+	}
+	else
+	{
+		$item_array = array(
+			'item_id'			=>	$_GET["id"],
+			'item_name'			=>	$_POST["hidden_name"],
+			'item_price'		=>	$_POST["hidden_price"],
+			'item_quantity'		=>	$_POST["quantity"]
+		);
+		$_SESSION["shopping_cart"][0] = $item_array;
+	}
 	
 }
 
@@ -62,33 +76,34 @@ if(isset($_GET["action"]))
 			<br />
 			<br /><br />
 			<?php
-				$query = "SELECT * FROM items ";
-				$result = mysqli_query($con, $query);
-				if(mysqli_num_rows($result) > 0)
+
+	
+				$TEST = new ShoppingCartController();
+				if(count($TEST->returner)>0)
 				{
-					while($row = mysqli_fetch_array($result))
+
+					for($i=0;$i<count($TEST->returner);$i++)
 					{
-						if($row["IsDeleted"]==0)
-						{
+						
 		
 						
 				?>
 				
 	
 			<div class="col-md-4">
-				<form method="post" action="shoppingcart.php?action=add&id=<?php echo $row["Id"]; ?>">
+				<form method="post" action="shoppingcart.php?action=add&id=<?php echo $TEST->returner[$i]->Id; ?>">
 					<div style="border:1px solid #333; background-color:#f1f1f1; border-radius:5px; padding:16px;" align="center">
-						<img src="images/<?php echo $row["Image"]; ?>" class="img-responsive" /><br />
+						<img src="images/<?php echo $TEST->returner[$i]->Image; ?>" class="img-responsive" /><br />
 
-						<h4 class="text-info"><?php echo $row["Name"]; ?></h4>
+						<h4 class="text-info"><?php echo $TEST->returner[$i]->Name; ?></h4>
 
-						<h4 class="text-danger">$<?php echo $row["Price"]; ?></h4>
+						<h4 class="text-danger">$<?php echo $TEST->returner[$i]->Price; ?></h4>
 
 						<input type="number" name="quantity" value="1" class="form-control" />
 
-						<input type="hidden" name="name" value="<?php echo $row["Name"]; ?>" />
+						<input type="hidden" name="name" value="<?php echo $TEST->returner[$i]->Name; ?>" />
 
-						<input type="hidden" name="price" value="<?php echo $row["Price"]; ?>" />
+						<input type="hidden" name="price" value="<?php echo $TEST->returner[$i]->Price; ?>" />
 
 						<input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />
 
@@ -96,7 +111,7 @@ if(isset($_GET["action"]))
 				</form>
 			</div>
 			<?php
-						}
+						
 					}
 				}
 			?>
