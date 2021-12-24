@@ -31,64 +31,90 @@
                     <select id="language" onChange="update()">
                         <option value="2">English</option>
                         <option value="1">Arabic</option>
-                        
+
                     </select>
-                    
 
-                    <script type="text/javascript">
-
-                        function update() {
-                            
-                            var select = document.getElementById('language');
-                            var option = select.options[select.selectedIndex];
-
-                            
-                            
-                            
-                            //function ( lang_code, trans_key)
-                            // translate(option.value , "Trans_login")
-                            // this function will return the actual translation 
-                            // document.getElementById('Trans_login').innerHTML= retuned result 
-                         
-                            $.ajax({
-                                type: "GET",
-                                url: '../Controller/Translation/Translation.php',
-                                dataType: 'json',
-                                data: { lang_code: option.value, trans_key: "btn_login" },
-
-                                success: function (obj, textstatus) {
-                                    
-                                    if (!('error' in obj)) {
-                                        
-                                        document.getElementById('Trans_login').innerHTML = obj.result;
-                                        
-
-                                    }
-                                    else {
-                                        console.log(obj.error);
-                                    }
-                                }
-                            });
-
-                        }
-
-
-                        
-                    </script>
                     <br><br>
-                    
+
                 </form>
 
-                <form action="logincontroller.php" method="POST">
+                <form onsubmit="return login(event)" method="POST">
                     <label>Enter your login coordinates</label>
-                    <input type="text" name="id" id="id" placeholder="Enter your ID">
-                    <input type="password" name="pass" id="pass" placeholder="Enter your Password">
-                    <button type="submit" name="notify" value="post" id="Trans_login"> </button>
+                    <input type="text" name="id" id="#id" placeholder="Enter your ID">
+                    <input type="password" name="pass" id="#pass" placeholder="Enter your Password">
+                    <button type="submit" name="notify" id="Trans_login"> </button>
                 </form>
+
+                <div id="error"></div>
             </div>
         </div>
-
     </div>
+
+    <script type="text/javascript">
+
+
+        function getTranslation(trans_key, tag_id) {
+            const select = document.getElementById('language');
+            const option = select.options[select.selectedIndex];
+            let lang_code = option.value
+
+            console.log({ lang_code: lang_code, trans_key: trans_key })
+            $.ajax({
+                type: "GET",
+                url: '../Controller/Translation/Translation.php',
+                dataType: 'json',
+                data: { lang_code: lang_code, trans_key: trans_key },
+
+                success: function (obj, textstatus) {
+                    if (!('error' in obj)) {
+                        document.getElementById(tag_id).innerHTML = obj.result;
+                    }
+                    else {
+                        console.log(obj.error);
+                    }
+                }
+            });
+        }
+
+        function login(event) {
+            event.preventDefault();
+            var user_id = document.getElementById('#id').value;
+            var pass = document.getElementById('#pass').value;
+
+            $.ajax({
+                type: "POST",
+                url: '../Controller/logincontroller.php',
+                dataType: 'json',
+                data: { id: user_id, pass: pass },
+
+                success: function (obj, textstatus) {
+
+                    if (obj.result == "success_login") {
+                        window.location = '../Views/Item/item-create-view.html'
+                    } else {
+                        getTranslation(obj.result, "error");
+                    }
+
+                }
+            });
+
+            return false;
+        }
+
+        function update() {
+
+            //function ( lang_code, trans_key)
+            // translate(option.value , "Trans_login")
+            // this function will return the actual translation 
+            // document.getElementById('Trans_login').innerHTML= retuned result 
+            getTranslation("btn_login", "Trans_login");
+
+
+        }
+
+
+
+    </script>
 </body>
 
 

@@ -40,11 +40,10 @@ class user
 		$result = mysqli_query($con,$s);
 		$num = mysqli_num_rows($result);
 		if($num==1){
-		header('location:itemviewcreate.html');
-		#change to login menu ^^^
-		}
+    return "success_login";
+ 		}
 		else{
-		echo"Wrong username or password";
+		return "error_login";
 		}  
 
 	}
