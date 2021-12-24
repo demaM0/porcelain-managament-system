@@ -1,15 +1,11 @@
 <?php
 require_once('../../Models/SingleTon.php');
 header('Content-Type: application/json');
-$aResult = array();
-// if( !isset($_GET['Translate']) ) { $aResult['error'] = 'No function name!'; }
-    // if( !isset($_GET['lang_code']) ) { $aResult['error'] = 'No function arguments!'; }
-
-   
+$results = array();
     
-$aResult['result'] = Translate( $_GET['lang_code'],$_GET['trans_key'] );
-$json=json_encode($aResult);
-//return $json;
+$results['result'] = Translate( $_GET['lang_code'],$_GET['trans_key'] );
+$json=json_encode($results);
+
 echo($json);
 function Translate($lang_code, $trans_key)
 {
@@ -22,7 +18,7 @@ function Translate($lang_code, $trans_key)
     }
     // select  id from translation where TranslationName =  $trans_key
 
-    $sql="select word from translationdetails inner join translation on translation.TranslationName = '$trans_key' where translationdetails.LangId = $lang_code ";
+    $sql="select word from translationdetails inner join translation on translation.TranslationName = '$trans_key' where translationdetails.LangId = $lang_code and translationdetails.TransId=translation.Id ";
     $result = mysqli_query($con,$sql);
     
     if ($result->num_rows > 0) {
