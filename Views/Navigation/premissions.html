@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>user specific Navigation</title>
+    <link rel="stylesheet" type="text/css" href="../LoginStyle.css">
+    <script>
+        window.onload = function() {
+
+            $.ajax({
+                type: "GET",
+                url: '../../Controller/userRoleController.php',
+                dataType: 'json',
+                data: {
+                    user_id: sessionStorage.getItem("user_idG")
+                },
+
+                success: function(obj, textstatus) {
+
+                    if (!('error' in obj)) {
+                        var buttons = document.getElementById("buttons")
+                        for (i = 0; i < obj.result.length; i++) {
+
+                            let tag = document.createElement("a")
+                            tag.setAttribute("href", obj.result[i].url)
+                            tag.innerHTML = obj.result[i].Fname
+
+                            let li = document.createElement("li")
+                            li.append(tag)
+                            buttons.append(li);
+                        }
+                        sessionStorage.removeItem("user_idG")
+
+                    }
+
+                }
+            });
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="container3">
+        <div id="container">
+            <div id="box">
+                <h1 id="formHeader"> Item Navigate </h1>
+                <div>
+                    <ul id="buttons">
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
