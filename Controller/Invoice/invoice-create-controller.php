@@ -15,8 +15,7 @@
     $check = Invoice::create($Total,$CustomerId);
 	if($check==1)
 	{
-		$query = "SELECT * FROM invoice";
-		$result = mysqli_query($con, $query);
+		$result = invoice::selectall();
 		if(mysqli_num_rows($result) > 0)
 		{
 			while($row = mysqli_fetch_array($result))
@@ -32,8 +31,7 @@
 				$Quant = $values["item_quantity"];
 				$Tot = $Price*$Quant;
 				InvoiceDetails::create($Id,$Quant,$Tot);
-				$query = "SELECT * FROM invoicedetails";
-				$result = mysqli_query($con, $query);
+				$result = InvoiceDetails::selectall();
 				if(mysqli_num_rows($result) > 0)
 				{
 					while($row = mysqli_fetch_array($result))

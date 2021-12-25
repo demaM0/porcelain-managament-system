@@ -65,7 +65,18 @@ class invoice
         echo("invoice deleted");
       }
 
+      
     }
-    
+    public static function selectall()
+    {
+      $con =DbConnection::getInstance();
+      if(!$con)
+      {
+        die('could not connect: ' . mysqli_error($con));
+      }
+      $query = "SELECT * FROM invoice ";
+      $result = mysqli_query($con, $query);
+      return $result;
+  }
 }
 ?>
