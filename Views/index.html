@@ -59,21 +59,20 @@
             const option = select.options[select.selectedIndex];
             let lang_code = option.value
             
-            console.log({ lang_code: lang_code, trans_key: trans_key })
+            
             $.ajax({
                 type: "GET",
                 url: '../Controller/Translation/Translation.php',
                 dataType: 'json',
                 data: { lang_code: lang_code, trans_key: trans_key },
-
+               
                 success: function (obj, textstatus) {
+                       
                     if (!('error' in obj)) {
                         document.getElementById(tag_id).innerHTML = obj.result;
                     }
-                    else {
-                        console.log(obj.error);
-                    }
-                }
+                    
+                }   
             });
         }
 
@@ -104,10 +103,7 @@
 
         function update() {
 
-            //function ( lang_code, trans_key)
-            // translate(option.value , "Trans_login")
-            // this function will return the actual translation 
-            // document.getElementById('Trans_login').innerHTML= retuned result 
+            
             getTranslation("btn_login", "Trans_login");
             getTranslation("trans_header","Trans_header");
 
