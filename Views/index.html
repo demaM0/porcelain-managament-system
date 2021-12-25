@@ -2,17 +2,14 @@
 
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="LoginStyle.css">
     <script>
-        window.onload = function () {
+        window.onload = function() {
             document.getElementById('Trans_login').innerHTML = "login";
-            document.getElementById('Trans_header').innerHTML="Enter your login coordinates";
+            document.getElementById('Trans_header').innerHTML = "Enter your login coordinates";
         }
     </script>
 </head>
@@ -40,7 +37,7 @@
                 </form>
 
                 <form onsubmit="return login(event)" method="POST">
-                    <label id="Trans_header" ></label>
+                    <label id="Trans_header"></label>
                     <input type="text" name="id" id="#id" placeholder="Enter your ID">
                     <input type="password" name="pass" id="#pass" placeholder="Enter your Password">
                     <button type="submit" name="notify" id="Trans_login"> </button>
@@ -52,27 +49,28 @@
     </div>
 
     <script type="text/javascript">
-
-
         function getTranslation(trans_key, tag_id) {
             const select = document.getElementById('language');
             const option = select.options[select.selectedIndex];
             let lang_code = option.value
-            
-            
+
+
             $.ajax({
                 type: "GET",
                 url: '../Controller/Translation/Translation.php',
                 dataType: 'json',
-                data: { lang_code: lang_code, trans_key: trans_key },
-               
-                success: function (obj, textstatus) {
-                       
+                data: {
+                    lang_code: lang_code,
+                    trans_key: trans_key
+                },
+
+                success: function(obj, textstatus) {
+
                     if (!('error' in obj)) {
                         document.getElementById(tag_id).innerHTML = obj.result;
                     }
-                    
-                }   
+
+                }
             });
         }
 
@@ -85,12 +83,16 @@
                 type: "POST",
                 url: '../Controller/logincontroller.php',
                 dataType: 'json',
-                data: { id: user_id, pass: pass },
+                data: {
+                    id: user_id,
+                    pass: pass
+                },
 
-                success: function (obj, textstatus) {
+                success: function(obj, textstatus) {
 
                     if (obj.result == "success_login") {
-                        window.location = '../Views/Item/item-create-view.html'
+                        sessionStorage.setItem("user_idG", user_id)
+                        window.location = '../Views/Navigation/premissions.html'
                     } else {
                         getTranslation(obj.result, "error");
                     }
@@ -103,15 +105,12 @@
 
         function update() {
 
-            
+
             getTranslation("btn_login", "Trans_login");
-            getTranslation("trans_header","Trans_header");
+            getTranslation("trans_header", "Trans_header");
 
 
         }
-
-
-
     </script>
 </body>
 
