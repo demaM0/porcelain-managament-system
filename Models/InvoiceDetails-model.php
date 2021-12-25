@@ -75,5 +75,16 @@ class InvoiceDetails
     $reg = "DELETE FROM invoicedetails WHERE Id = $Id";
     mysqli_query($con,$reg);
   }
+  public static function selectall()
+  {
+    $con =DbConnection::getInstance();
+    if(!$con)
+    {
+      die('could not connect: ' . mysqli_error($con));
+    }
+    $query = "SELECT * FROM invoicedetails ";
+    $result = mysqli_query($con, $query);
+    return $result;
+}
 }
 ?>

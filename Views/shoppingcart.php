@@ -12,8 +12,7 @@ session_start();
 	
 if(isset($_POST["add_to_cart"]))
 {
-	if(isset($_SESSION["shopping_cart"]))
-	{
+
 		$item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
 		if(!in_array($_GET["id"], $item_array_id))
 		{
@@ -29,19 +28,20 @@ if(isset($_POST["add_to_cart"]))
 		}
 		else
 		{
-			echo '<script>alert("Item Already Added")</script>';
+		
+			foreach($_SESSION["shopping_cart"] as $keys => $values)
+			{
+		
+			if($_SESSION["shopping_cart"][$keys]['item_id'] == $_GET["id"])
+			{
+				$_SESSION["shopping_cart"][$keys]['item_quantity'] += $_POST["quantity"];
+			}
+					echo '<script>window.location="shoppingcart.php"</script>';
+				
+			}
 		}
-	}
-	else
-	{
-		$item_array = array(
-			'item_id'			=>	$_GET["id"],
-			'item_name'			=>	$_POST["hidden_name"],
-			'item_price'		=>	$_POST["hidden_price"],
-			'item_quantity'		=>	$_POST["quantity"]
-		);
-		$_SESSION["shopping_cart"][0] = $item_array;
-	}
+	
+
 	
 }
 
