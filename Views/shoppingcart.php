@@ -13,6 +13,8 @@ session_start();
 if(isset($_POST["add_to_cart"]))
 {
 
+	if(isset($_SESSION["shopping_cart"]))
+	{
 		$item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
 		if(!in_array($_GET["id"], $item_array_id))
 		{
@@ -40,6 +42,19 @@ if(isset($_POST["add_to_cart"]))
 				
 			}
 		}
+	}
+	else
+	{
+		$item_array = array(
+			'item_id'			=>	$_GET["id"],
+			'item_name'			=>	$_POST["name"],
+			'item_price'		=>	$_POST["price"],
+			'item_quantity'		=>	$_POST["quantity"]
+		);
+		$_SESSION["shopping_cart"][0] = $item_array;
+	}
+
+	
 	
 
 	
