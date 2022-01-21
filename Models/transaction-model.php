@@ -37,8 +37,12 @@ class transaction
         die('could not connect: ' . mysqli_error($con));
       }
       $reg = "insert into transaction(FullPrice, SupplierId, ManagerId) values ($FullPrice, $SupplierId, $ManagerId)";
-      var_dump(mysqli_query($con,$reg));
-      echo("transaction created");
+      $test=mysqli_query($con,$reg);
+      if($test)
+      {
+        echo("Transaction created");
+        return 1;
+      }
     }
     public function update()
     {
@@ -68,6 +72,17 @@ class transaction
         echo("transaction deleted");
       }		
 
+    }
+    public static function selectall()
+    {
+      $con =DbConnection::getInstance();
+      if(!$con)
+      {
+        die('could not connect: ' . mysqli_error($con));
+      }
+      $query = "SELECT * FROM transaction ";
+      $result = mysqli_query($con, $query);
+      return $result;
     }
 }  
 ?>

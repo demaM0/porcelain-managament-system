@@ -21,38 +21,19 @@ require_once("SingleTon.php");
           
         }
     }
-    public static function transactioninstallment($TransactionId){
-      $con =DbConnection::getInstance();
-        if(!$con)
-        {
-          die('could not connect: ' . mysqli_error($con));
-
-        } 
-        //$query = "SELECT Max(Id) FROM users";
-        $query = mysqli_insert_id($con);
-        
-        $reg = "insert into transactioninstallment ( InstallmentId, TransactionId ) values ($query,$TransactionId);";
-        echo($query);
-        echo($TransactionId);
-        var_dump(mysqli_query($con,$reg));
-        
-  }
-    public static function create($Quantity,$TransactionId)
+    public static function create($Quantity)
     {
       $con =DbConnection::getInstance();
       if(!$con)
       {
         die('could not connect: ' . mysqli_error($con));
       }
-      $s = "select * from transaction where Id  = $TransactionId ";
-      $result = mysqli_query($con,$s);
-      $num = mysqli_num_rows($result);
-    if($num==1)
-    {
+
+
       $reg = "insert into installment(Quantity) values ('$Quantity')";
       
       mysqli_query($con,$reg);
-    }
+    
     }
     public function update()
     {
@@ -82,6 +63,17 @@ require_once("SingleTon.php");
         echo("installment deleted");
       }
 
+    }
+    public static function selectall()
+    {
+      $con =DbConnection::getInstance();
+      if(!$con)
+      {
+        die('could not connect: ' . mysqli_error($con));
+      }
+      $query = "SELECT * FROM installment ";
+      $result = mysqli_query($con, $query);
+      return $result;
     }
 
     
