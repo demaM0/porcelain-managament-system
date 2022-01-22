@@ -2,10 +2,10 @@
 require_once("SingleTon.php");
 class InvoiceDetails
 {
-    protected $Id;
-    protected $ItemId;
-    protected $Quantity;
-    protected $Total;
+    public $Id;
+    public $ItemId;
+    public $Quantity;
+    public $Total;
     function __construct($Id)
     {
         $con =DbConnection::getInstance();
@@ -18,7 +18,7 @@ class InvoiceDetails
         if($row = mysqli_fetch_array($invoicedetailsdataset))
         {
           $this->Id=$row["Id"];
-          $this->ItemID=$row["ItemID"];
+          $this->ItemId=$row["ItemId"];
           $this->Quantity=$row["Quantity"];
           $this->Total=$row["Total"];
         }
