@@ -4,14 +4,19 @@
 	require_once('../../Models/SingleTon.php');
 	require_once('../../Models/installment-model.php');
 	require_once('../../Models/transaction-installment-model.php');
+	require_once('../../Decorator/InterestFacade.php');
 	$FullPrice = $_POST['fullprice'];
 	$SupplierId = $_POST['supplierid'];
 	$ManagerId = $_POST['managerid'];
 	$Installments = $_POST['Installments'];
+	$Interest = $_POST['interest'];
+
 	if(isset($_POST["other"]))
 	{
-		$EachInstallment = $FullPrice / $Installments;
-		$check = transaction::create($FullPrice,$SupplierId,$ManagerId);
+		$PriceWithInterest = new InterestFacade($FullPrice,$Interest);
+		
+		$EachInstallment = $PriceWithInterest->display() / $Installments;
+		$check = transaction::create($PriceWithInterest->display(),$SupplierId,$ManagerId);
 
 	if($check>=1)
 	{
@@ -44,6 +49,7 @@
 
 	
 	}
+	// no installments
 	else
 	{
 		transaction::create($FullPrice,$SupplierId,$ManagerId);

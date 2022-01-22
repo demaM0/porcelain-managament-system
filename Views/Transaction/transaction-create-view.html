@@ -23,19 +23,26 @@
                         <label for="other">Installments</label>
                         <input type="checkbox" id="other" name="other" value="other"> 
                         <input type="number" id="Installments" name="Installments" placeholder="Enter Installments length">
+                        <input type="number" id="interest" name="interest" placeholder="Enter Interest Percentage">
+                        
                       </div>
                    
                     <script>
                             var otherCheckbox = document.querySelector('input[value="other"]');
                             var otherText = document.querySelector('input[id="Installments"]');
+                            var otherText2 = document.querySelector('input[id="interest"]');
                             otherText.style.visibility = 'hidden';
+                            otherText2.style.visibility = 'hidden';
 
                             otherCheckbox.addEventListener('change', () => {
                             if(otherCheckbox.checked) {
                                 otherText.style.visibility = 'visible';
                                 otherText.value = '';
+                                otherText2.style.visibility = 'visible';
+                                otherText2.value = '';
                             } else {
                                 otherText.style.visibility = 'hidden';
+                                otherText2.style.visibility = 'hidden';
                             }
                             });
 

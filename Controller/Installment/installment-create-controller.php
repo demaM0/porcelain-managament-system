@@ -7,7 +7,5 @@
 	
 		installment::create($Quantity,$TransactionId);
 	
-		installment::transactioninstallment($TransactionId);
-	
 	
 ?>

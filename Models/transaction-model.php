@@ -17,6 +17,11 @@ class transaction
     {
         die('could not connect: ' . mysqli_error($con));
     }
+    if (!is_numeric($id))
+    {
+      echo '<script>alert("No such transaction ID")</script>';
+      echo '<script>window.location="../Views/Transaction-id-input.html"</script>';
+    }
     $s = "select * from transaction where Id  = $id ";
     $result = mysqli_query($con,$s);
     $num = mysqli_num_rows($result);
@@ -25,9 +30,20 @@ class transaction
     $this->FullPrice = $row["FullPrice"];
     $this->SupplierId = $row["SupplierId"];
     $this->ManagerId = $row["ManagerId"];
+    $this->IsDeleted = $row["IsDeleted"];
+   }
+   else
+   {
+    echo '<script>alert("No such transaction ID")</script>';
+    echo '<script>window.location="../Views/Transaction-id-input.html"</script>';
+   }
+   if($this->IsDeleted==1)
+   {
+    echo '<script>alert("No such transaction ID")</script>';
+    echo '<script>window.location="../Views/Transaction-id-input.html"</script>'; 
    }
         
-    }
+  }
     
     public static function create($FullPrice, $SupplierId, $ManagerId)
     {
