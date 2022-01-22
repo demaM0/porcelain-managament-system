@@ -4,6 +4,8 @@ require_once("SingleTon.php");
 
     public $Id;
     public $Quantity;
+    public $IsPaid;
+    public $CreatedAt;
     
     function __construct($Id)
     {
@@ -18,6 +20,8 @@ require_once("SingleTon.php");
         {
           $this->Id=$row["Id"];
           $this->Quantity=$row["Quantity"];
+          $this->IsPaid=$row["IsPaid"];
+          $this->CreatedAt=$row["CreatedAt"];
           
         }
     }
@@ -39,15 +43,12 @@ require_once("SingleTon.php");
     {
       $con =DbConnection::getInstance();
       $sql = mysqli_prepare($con,
-        "UPDATE installment SET Quantity =? ,UpdatedAt =CURRENT_TIMESTAMP()
+        "UPDATE installment SET Quantity =?, IsPaid=1 ,UpdatedAt =CURRENT_TIMESTAMP()
         WHERE Id =?"
       );
       $sql->bind_param('ii',$this->Quantity,$this->Id);
       $bol = $sql->execute();
-      if($bol)
-      {
-        echo("update 10/10");
-      }
+
     }
     public function delete()
     {
@@ -75,6 +76,7 @@ require_once("SingleTon.php");
       $result = mysqli_query($con, $query);
       return $result;
     }
+
 
     
   }
