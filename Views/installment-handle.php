@@ -11,7 +11,7 @@ require_once('../Controller/installment-handle-controller.php');
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Shopping Cart</title>
+		<title>Installment Handling</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -25,7 +25,11 @@ require_once('../Controller/installment-handle-controller.php');
 			<br /><br />
 			<?php
 
-	
+				if (!is_numeric($_POST['transid']))
+				{
+					echo '<script>alert("Enter a number")</script>';
+					echo '<script>window.location="../Views/Transaction-id-input.html"</script>';
+				}
 				$TEST = new InstallmentHandleController($_POST['transid']);
 				if(count($TEST->returner)>0)
 				{
