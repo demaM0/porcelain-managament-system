@@ -1,6 +1,5 @@
 <?php
 require_once('SingleTon.php');
-require_once('../State/StateInterface.php');
 class transaction
 {
 	public $Id;
@@ -10,10 +9,10 @@ class transaction
 	public $IsDeleted;
   public $UpdatedAt;
   public $CreatedAt;
+  public $error=0;
   private $State;
-    public function __construct($id,State $state)
+    public function __construct($id)
     {
-      $this->transtionto($state);
       $con =DbConnection::getInstance();
     if(!$con)
     {
@@ -21,13 +20,13 @@ class transaction
     }
     if (!is_numeric($id))
     {
-      echo '<script>alert("No such transaction ID")</script>';
-      echo '<script>window.location="../Views/Navigation/premissions.html"</script>';
+      $this->error=-1;
     }
     $s = "select * from transaction where Id  = $id ";
     $result = mysqli_query($con,$s);
     $num = mysqli_num_rows($result);
-    if($num == 1 && $row = mysqli_fetch_assoc($result)){
+    if($num == 1 && $row = mysqli_fetch_assoc($result))
+    {
     $this->Id = $id;
     $this->FullPrice = $row["FullPrice"];
     $this->SupplierId = $row["SupplierId"];
@@ -36,21 +35,15 @@ class transaction
    }
    else
    {
-    echo '<script>alert("No such transaction ID")</script>';
-    echo '<script>window.location="../Views/Navigation/premissions.html"</script>';
+    $this->error=-1;
    }
    if($this->IsDeleted==1)
    {
-    echo '<script>alert("No such transaction ID")</script>';
-    echo '<script>window.location="../Views/Navigation/premissions.html"</script>'; 
+    $this->error=-1;
    }
         
   }
-  public function transtionto(State $state)
-  {
-    $this->State = $state;
-    $this->State->setContext($this);
-  }
+
     
     public static function create($FullPrice, $SupplierId, $ManagerId)
     {

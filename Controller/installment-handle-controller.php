@@ -11,11 +11,17 @@ class InstallmentHandleController  {
        $result2 = 0;
        $result2 = transactioninstallment::SelectAllWithId($Id);
        $result=array();
+       if($Transaction->error==-1) 
+       {
+           echo '<script>alert("No such transaction")</script>';
+           echo '<script>window.location="../Views/Transaction-id-input.html"</script>';
+       }
         if($result2==0)
         {
             echo '<script>alert("No installments to be paid")</script>';
             echo '<script>window.location="../Views/Transaction-id-input.html"</script>';
         }
+
        if(count($result2)>0)
        {
 
