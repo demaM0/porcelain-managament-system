@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 require_once('../Models/user-model.php');
 header('Content-Type: application/json');
 $results = array();
@@ -12,7 +13,7 @@ $results['result'] = $login->login();
 
 $json = json_encode($results);
 echo ($json);
-
+$_SESSION["CurrentId"]=$id;
 
 
 ?>
