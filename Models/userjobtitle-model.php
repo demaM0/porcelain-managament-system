@@ -21,7 +21,24 @@ class userjobtitle {
       }
   }
 
- 
+  public static function selectjobtitle($Id)
+  {
+    $con =DbConnection::getInstance();
+    if(!$con)
+    {
+      die('could not connect: ' . mysqli_error($con));
+    }
+      $sql="SELECT * FROM userjobtitle where UserId = $Id";
+      $UserTypedataset = mysqli_query($con,$sql);
+      $num = mysqli_num_rows($UserTypedataset);
+      if($num >0)
+      {
+        while($row=mysqli_fetch_array($UserTypedataset))
+        {
+          return $row["JobTitleId"];
+        }
+      }
+  }
   
 
     public static function create($Name)

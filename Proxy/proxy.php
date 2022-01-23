@@ -1,20 +1,22 @@
 <?php
 session_start();
+require_once('../Models/userjobtitle-model.php');
 require_once('subject.php');
 require_once('real-subject.php');
+
 class Proxy implements subjectproxy
 {
-    private $user;
+    private $realSubject;
 
-    public function __construct( $user)
+    public function __construct( $realSubject)
     {
-        $this->user = $user;
+        $this->realSubject = $realSubject;
     }
-
-    public function ExecuteQuery($Query)
+    
+    public function ExecuteQuery($usertobedel)
     {
         if ($this->checkAccess()) {
-            $this->realSubject->ExecuteQuery($Query);
+            $this->realSubject->ExecuteQuery($usertobedel);
             //$this->logAccess();
         }
         else 
@@ -25,17 +27,20 @@ class Proxy implements subjectproxy
 
     private function checkAccess(): bool
     {
-       // for()
-       // {
-            if($_SESSION["CurrentId"])
-            {
-                
-            }
-      //  }
-        // Some real checks should go here.
-        echo "Proxy: Checking access prior to firing a real request.\n";
 
-        return true;
+        $Id=$_SESSION["CurrentId"];
+        //$this->userjobtitle->selectjobtitle($Id);
+        $jobId=userjobtitle::selectjobtitle($Id);
+        if($jobId==3)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+        echo "Proxy: Checking access prior to firing a real request.\n";
     }
 
    // private function logAccess(): void
