@@ -42,6 +42,10 @@ if($transaction->error!=-1)
             }
         
     }
+    else
+    {
+        echo("No Installment"."\n");
+    }
 }
 else
 {

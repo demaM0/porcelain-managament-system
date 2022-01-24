@@ -18,12 +18,7 @@ class Pdf implements Maker
          echo"InvoiceTotal:".$this->invoice->Total."\n";
          echo"Item:".$this->invoiced->ItemId."\n"."Q:".$this->invoiced->Quantity."\n"."Total:".$this->invoiced->Total."\n";
     }
-    public function makeexcel($filename)
-    {
-        
-     //donth;
-        
-    }
+   
 
 }
 

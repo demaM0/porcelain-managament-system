@@ -1,5 +1,6 @@
 <?php
 include_once("Target.php");
+include_once("Factory.php");
 class MakeFile implements Target
 {
     public $target;
@@ -12,7 +13,6 @@ class MakeFile implements Target
     }
     public function request($filetype,$filename)
     {
-        
         if(strcasecmp($filetype,"excel")==0||(strcasecmp($filetype,"pdf")==0))
         {
             $this->target=new Adapter($filetype,$this->invoice,$this->invoiced);
@@ -22,6 +22,7 @@ class MakeFile implements Target
         {
             echo"invalid FileType";
         }
+        
     }
 
 }

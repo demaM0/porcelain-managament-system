@@ -16,6 +16,7 @@
 	$Invoice = new Invoice($Id);
     $FileType=$_POST['type'];
     $FileName=$_POST['FileName'];
+    
     $Inv=invoiceinvoicedetailsmodel::Invoice($Id);
     if(count($Inv)>0)
     {

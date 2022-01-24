@@ -1,5 +1,6 @@
 <?php
 include_once("Target.php");
+include_once("Factory.php");
     class Adapter implements Target
     {
         public $file;
@@ -9,21 +10,12 @@ include_once("Target.php");
         {
             $this->invoiced=$invoiced;
             $this->invoice=$invoice;
-            if(strcasecmp($filetype,"pdf")==0 )
-            {
-                $this->file = new Pdf($this->invoice,$this->invoiced);
-            }
-            else if(strcasecmp($filetype,"excel")==0)
-            {
-                $this->file = new Excel($this->invoice,$this->invoiced);
-            }
+            $Factory=new Factory($this->invoice,$this->invoiced);
+            $this->file=$Factory->getType($filetype);
         }
         public function request($filetype,$filename)
         {
-
-                $this->file ->print($filename);
-      
-
+            $this->file->print($filename);
         }
 
     }
