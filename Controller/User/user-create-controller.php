@@ -20,9 +20,12 @@ $con =DbConnection::getInstance();
 	if($num==1){
 		user::create($Name, $Phone, $Email,$Password);
         user::assignjobtitle($JobTitleId);
+		echo '<script>alert("User created")</script>';
+		echo '<script>window.location="../../Views"</script>';
 	}
 	else{
 	echo"this job title doesnt exist";
 	} 
+
 
 ?>
