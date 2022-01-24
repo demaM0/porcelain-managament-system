@@ -20,14 +20,10 @@ include_once("Target.php");
         }
         public function request($filetype,$filename)
         {
-            if(strcasecmp($filetype,"pdf")==0 )
-            {
-                $this->file ->makepdf($filename);
-            }
-            elseif(strcasecmp($filetype,"excel")==0 )
-            {
-                $this->file ->makeexcel($filename);
-            }
+
+                $this->file ->print($filename);
+      
+
         }
 
     }

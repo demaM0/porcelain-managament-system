@@ -10,7 +10,7 @@ class Pdf implements Maker
         $this->invoiced=$invoiced;
         //var_dump($this->invoiced);
     }
-    public function makepdf($filename)
+    public function print($filename)
     {
           
         
