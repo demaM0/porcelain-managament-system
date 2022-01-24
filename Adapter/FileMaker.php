@@ -1,8 +1,8 @@
 <?php
 interface Maker{
 
-    public function makepdf($filename);
-    public function makeexcel($filename);
+    public function print($filename);
+
 
 }
 

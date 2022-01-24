@@ -16,7 +16,7 @@ class Excel implements Maker
         //donth;
         
     }
-    public function makeexcel($filename)
+    public function print($filename)
     {
         $date = date('Y-m-d-H-i-s');
         $myfile = fopen("excels/$filename.$date.txt", "w");
