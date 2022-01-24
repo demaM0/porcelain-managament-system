@@ -30,7 +30,7 @@ class Items
    }
         
     }
-    public static function create($Name, $Color, $Quantity,$Price,$id)
+    public static function create($Name, $Color, $Quantity,$Price,$id,$image)
     {
       $con =DbConnection::getInstance();
       if(!$con)
@@ -42,8 +42,8 @@ class Items
       $num = mysqli_num_rows($result);
     if($num==1)
     {
-      $reg = "insert into items(Name, Color, Quantity,Price) values ('$Name', '$Color', $Quantity,$Price)";
-      var_dump(mysqli_query($con,$reg));
+      $reg = "insert into items(Name, Color, Quantity,Price,Image) values ('$Name', '$Color', $Quantity,$Price,'$image')";
+      mysqli_query($con,$reg);
     }
       
       
@@ -60,7 +60,7 @@ class Items
       echo($id);
       $reg="insert into itemsupplier(SupplierId,ItemId) values ($id,$s)";
 
-      var_dump(mysqli_query($con,$reg));
+      mysqli_query($con,$reg);
     }
     public function update()
     {

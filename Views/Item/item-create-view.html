@@ -16,13 +16,14 @@
 
 
                 <hr>
-                <form action="../../Controller/Item/item-create-controller.php" method="POST">
+                <form action="../../Controller/Item/item-create-controller.php" method="POST" enctype="multipart/form-data">
                     <label></label>
                     <input type="text" name="name" id="name" placeholder="Enter item name">
                     <input type="text" name="color" id="color" placeholder="Enter item color">
                     <input type="number" name="price" id="price" placeholder="Enter item price">
                     <input type="number" name="quantity" id="quantity" placeholder="Enter item quantity">
                     <input type="number" name="SupplierId" id="SupplierId" placeholder="Enter SupplierId">
+                    <input type="file" name="fileToUpload" id="fileToUpload">
                     <button type="submit" name="notify" value="post"> Create </button>
                 </form>
             </div>
