@@ -95,5 +95,29 @@ class invoice
       $result = mysqli_query($con, $query);
       return $result;
   }
+  public static function selectallforview()
+  {
+    $con =DbConnection::getInstance();
+    if(!$con)
+    {
+        die('could not connect: ' . mysqli_error($con));
+    }
+    $query = "SELECT * FROM invoice";
+    $result = mysqli_query($con, $query);
+    $num = mysqli_num_rows($result);
+    $invoicearray = array();
+    if($num>0)
+    {
+        while($row = mysqli_fetch_array($result))
+        {
+            if($row["IsDeleted"]==0)
+            {
+                $invoiceloop = new invoice($row["Id"]);
+                array_push($invoicearray,$invoiceloop);
+            }
+        }
+    }
+    return $invoicearray;
+  }
 }
 ?>
