@@ -62,7 +62,25 @@ class invoice
       $bol = $sql->execute();
       if($bol)
       {
-        echo("invoice deleted");
+        header("Location: ../../Views/Invoice/invoice-delete-view.html", true);
+        exit();
+      }
+
+      
+    }
+    public function undelete()
+    {
+      $con =DbConnection::getInstance();
+      $sql = mysqli_prepare($con,
+        "UPDATE invoice SET IsDeleted =? ,UpdatedAt =CURRENT_TIMESTAMP() where Id=?"
+      );
+      $this->IsDeleted=0;
+      $sql->bind_param('ii',$this->IsDeleted,$this->Id);
+      $bol = $sql->execute();
+      if($bol)
+      {
+        header("Location: ../../Views/Invoice/invoice-delete-view.html", true);
+        exit();
       }
 
       

@@ -4,7 +4,6 @@
     require_once('../../Models/InvoiceDetails-model.php');
 	require_once('../../Models/invoice-invoicedetails-model.php');
 	require_once('../../Command/invoice-delete-command.php');
-    require_once('../../Command/invoice-undo-delete-command.php');
 	require_once('../../Command/receiver.php');
 	require_once('../../Command/invoker.php');
      //$Id = $_POST['Id'];
@@ -17,14 +16,7 @@
         die('could not connect: ' . mysqli_error($con));
     }
     $reciever = new Receiver();
-    if(isset($_POST["delete"]))
-    {
-    $deleteCommand = new deleteCommand($reciever);
-    }
-    if(isset($_POST["undodelete"]))
-    {
-        $deleteCommand = new undoDeleteCommand($reciever);
-    }
+    $deleteCommand = new undoDeleteCommand($reciever);
 	$invoker = new invoke($deleteCommand);
 	$invoker->run();
 ?>

@@ -1,6 +1,6 @@
 <?php
 require_once('command.php');
-class deleteCommand implements command{
+class undoDeleteCommand implements command{
 
     private Receiver $receiver;
     public function __construct(Receiver $receiver)
@@ -10,7 +10,7 @@ class deleteCommand implements command{
 
     public function execute(){
         
-        $this->receiver->invoicedelete();
+        $this->receiver->invoicerevert();
     }
 }
 ?>

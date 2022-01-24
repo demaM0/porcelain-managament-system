@@ -9,7 +9,7 @@ class createCommand implements command{
     }
 
     public function execute(){
-        //steps needed for invoice create
+        
        $check= $this->receiver->invoiceCreate();
         $this->receiver->invoiceCheckCreate($check);
     }

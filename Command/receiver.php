@@ -68,5 +68,11 @@ class Receiver
         $Invoice = new invoice($Id);
         $Invoice->delete();
     }
+    public function invoicerevert()
+    {
+        $Id = $_POST['Id'];
+        $Invoice = new invoice($Id);
+        $Invoice->undelete();
+    }
 }
 ?>
