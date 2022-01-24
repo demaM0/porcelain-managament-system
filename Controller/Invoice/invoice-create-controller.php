@@ -17,7 +17,8 @@
 	$invoker = new invoke($createCommand);
 	$invoker->run();
 
-
+	header("Location: ../../EAV/payementOptions.html", true);
+        exit();
 	//$reciever = new Receiver();
    // $createCommand = new createCommand($reciever);
 	

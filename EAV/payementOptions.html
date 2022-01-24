@@ -1,0 +1,115 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Payment</title>
+    <link rel="stylesheet" type="text/css" href="../Views/LoginStyle.css">
+    <script>
+        window.onload = function() {}
+    </script>
+</head>
+
+<body>
+    <div id="container3">
+        <div id="container">
+            <div id="box">
+                <form>
+
+                    <label for="pay">Choose a payment option:</label>
+                    <select id="payment" onChange="update()">
+                        <option value="0" default>choose payment method</option>
+                        <option value="2">Cash</option>
+                        <option value="1">Credit</option>
+                        <option value="4">Bank transfer</option>
+                    </select>
+
+                    <br><br>
+
+                </form>
+
+                <form onsubmit="return confirmpayment(event)" method="POST" id="#payementform">
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var fields;
+
+        function getOption() {
+            const select = document.getElementById('payment');
+            const option = select.options[select.selectedIndex];
+            let payment_type = option.value
+
+
+            $.ajax({
+                type: "GET",
+                url: 'Optionretrieval.php',
+                dataType: 'json',
+                data: {
+                    paymentId: payment_type
+                },
+
+                success: function(obj, textstatus) {
+
+                    //save data and pass to 
+                    //get the results array 
+                    console.log("fields", obj.result)
+
+                    fields = obj.result
+                        // generate the fields from the array 
+                    let option_fields = fields.map(function(option, index) {
+                        return `<input type='${option.Type}' name='${option.OptionField}' id='#${option.OptionField.replace(/ /g, "")}' placeholder='Enter your ${option.OptionField}' required>`
+                    })
+                    option_fields.push("<button type='submit' name='notify'> confirm payment </button>")
+
+                    var form_id = document.getElementById('#payementform');
+                    form_id.innerHTML = option_fields.join(" ")
+                }
+            });
+        }
+
+        function update() {
+
+
+            //go grab 
+            //select Name from options o inner join paymentmethodoptions p on o.Id = p.OptionId where p.PaymentId = 1 
+            getOption();
+
+        }
+
+        function confirmpayment(event) {
+
+            event.preventDefault();
+            let option_values = fields.map(function(option, index) {
+                return {
+                    [option.OptionId]: document.getElementById(`#${option.OptionField.replace(/ /g, "")}`).value
+                }
+
+            })
+            $.ajax({
+                type: "POST",
+                url: 'paymentconfirmed.php',
+                dataType: 'json',
+                data: {
+                    option_values: option_values
+                },
+                statusCode: {
+                    200: function() {
+                        window.alert("payment succsess!")
+                        location.href = '../Views/shoppingcart.php';
+                    }
+                }
+            });
+
+            return false;
+        }
+    </script>
+</body>
+
+
+</html>
