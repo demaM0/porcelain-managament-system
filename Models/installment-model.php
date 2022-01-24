@@ -6,6 +6,7 @@ require_once("SingleTon.php");
     public $Quantity;
     public $IsPaid;
     public $CreatedAt;
+    public $UpdatedAt;
     
     function __construct($Id)
     {
@@ -22,6 +23,7 @@ require_once("SingleTon.php");
           $this->Quantity=$row["Quantity"];
           $this->IsPaid=$row["IsPaid"];
           $this->CreatedAt=$row["CreatedAt"];
+          $this->UpdatedAt=$row["UpdatedAt"];
           
         }
     }

@@ -51,7 +51,7 @@ require_once('../Controller/installment-handle-controller.php');
 						<h4 class="text-info">Installment Id: <?php echo $TEST->returner[$i]->Id; ?></h4>
 
 						<h4 class="text-danger">Installment Quantity: $<?php echo $TEST->returner[$i]->Quantity; ?></h4>
-						<h4 class="text-info">Installment Issue Date: <?php echo $TEST->returner[$i]->CreatedAt; ?></h4>
+						
 
 
 						<input type="hidden" name="Id" value="<?php echo $TEST->returner[$i]->Id; ?>" />
@@ -62,13 +62,16 @@ require_once('../Controller/installment-handle-controller.php');
 						if($TEST->returner[$i]->IsPaid==0)
 						{
 						?>
+						<h4 class="text-info">Installment Issue Date: <?php echo $TEST->returner[$i]->CreatedAt; ?></h4>
 						<input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Pay Installment" />
 						<?php
 						}
 						if($TEST->returner[$i]->IsPaid==1)
 						{
 						?>
+						<h4 class="text-info">Installment Pay Date: <?php echo $TEST->returner[$i]->UpdatedAt; ?></h4>
 							<input type="button" onclick ="myFunction()" name="add_to_cart" style="margin-top:5px;" class="btn btn-danger" value="Installment already paid" />
+
 						<?php
 						}
 						?>

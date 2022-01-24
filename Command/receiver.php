@@ -32,7 +32,7 @@ class Receiver
             {
                 while($row = mysqli_fetch_array($result))
                 {
-                    $IdDelete = $row["Id"];
+                    $IdDelete = $row;
                 }
             }
         
@@ -48,18 +48,21 @@ class Receiver
                     {
                         while($row = mysqli_fetch_array($result))
                         {
-                            $IdDelete2 = $row["Id"];
+                            $IdDelete2 = $row;
                         }
                     }  
-                    invoiceinvoicedetailsmodel::create($IdDelete,$IdDelete2) ;  
+                    invoiceinvoicedetailsmodel::create($IdDelete["Id"],$IdDelete2["Id"]) ;  
             }
         
             
             $_SESSION["shopping_cart"]=array();
+            echo '<script>alert("Purchase completed")</script>';
+            echo '<script>window.location="../../Views/shoppingcart.php"</script>';
         }
         else
         {
-            echo("Wrong Customer ID");
+            echo '<script>alert("Wrong customer ID")</script>';
+            echo '<script>window.location="../../Views/shoppingcart.php"</script>';
         }
     }
     public function invoicedelete()
