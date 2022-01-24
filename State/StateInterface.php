@@ -1,20 +1,14 @@
 <?php
-require_once("transaction-model.php");
+require_once("Context.php");
 abstract class State
 {
-    
+    private $state;
     protected $context;
-
-    public function setContext(transaction $context)
+    abstract public function transaction() ;
+    public function setContext(Context $context)
     {
         $this->context = $context;
     }
-
-    abstract public function transactionDoesNotExist(): void;
-    abstract public function transactionExistNoInstallment(): void;
-    abstract public function transactionExistInstallmentNotPaid(): void;
-    abstract public function transactionExistInstallmentPaid(): void;
-    
 }
 
 ?>
