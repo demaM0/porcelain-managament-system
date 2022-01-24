@@ -114,9 +114,7 @@ class Items
         }
       }
       return $itemsarray;
-
-
-
   }
+  
 }  
 ?>
