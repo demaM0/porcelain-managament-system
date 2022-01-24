@@ -31,9 +31,10 @@
       {
         die('could not connect: ' . mysqli_error($con));
       }
-      $reg = "insert into customer(Name, Phone, Email) values ('$Name', '$Phone', $Email)";
-      
-      var_dump(mysqli_query($con,$reg));
+      $reg = "insert into customer(Name, Phone, Email) values ('$Name', $Phone, '$Email')";
+
+      mysqli_query($con,$reg);
+      echo '<script>window.location="../../Views/shoppingcart.php"</script>';
       
     }
     public function update()
