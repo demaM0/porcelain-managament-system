@@ -9,12 +9,16 @@ class InstallmentHandleController  {
     {  
        $Transaction = new transaction($Id);
        $result2 = 0;
-       $result2 = transactioninstallment::SelectAllWithId($Id);
+
        $result=array();
        if($Transaction->error==-1) 
        {
            echo '<script>alert("No such transaction")</script>';
            echo '<script>window.location="../Views/Transaction-id-input.html"</script>';
+       }
+       else
+       {
+        $result2 = transactioninstallment::SelectAllWithId($Transaction);
        }
         if($result2==0)
         {
@@ -28,7 +32,7 @@ class InstallmentHandleController  {
            for($i=0;$i<count($result2);$i++)
            {
             
-                $Installment = new installment($result2[$i]);
+                $Installment = new installment($result2[$i]["InstallmentId"]);
 
                 array_push($result,$Installment);
                

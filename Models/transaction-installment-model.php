@@ -31,14 +31,14 @@ class  transactioninstallment
       $reg = "insert into  `transactioninstallment`(InstallmentId,TransactionId) values ($InstallmentId,$TransactionId)";
       $test=mysqli_query($con,$reg);
     }
-    public static function SelectAllWithId($WantedId)
+    public static function SelectAllWithId($Transaction)
     {
       $con =DbConnection::getInstance();
       if(!$con)
       {
         die('could not connect: ' . mysqli_error($con));
       }
-      $query = "SELECT * FROM transactioninstallment where TransactionId = $WantedId";
+      $query = "SELECT * FROM transactioninstallment where TransactionId = $Transaction->Id";
       $result = mysqli_query($con, $query);
       $num = mysqli_num_rows($result);
       $installmentsarray = array();
@@ -47,7 +47,7 @@ class  transactioninstallment
         while($row = mysqli_fetch_array($result))
         {
 
-            $installmentloop = ($row["InstallmentId"]);
+            $installmentloop = ($row);
             array_push($installmentsarray,$installmentloop);
           
         }

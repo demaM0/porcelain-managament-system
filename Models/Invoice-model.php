@@ -32,7 +32,6 @@ class invoice
       $test=mysqli_query($con,$reg);
       if($test)
       {
-        echo("Thanks for the purchase");
         return 1;
       }
       

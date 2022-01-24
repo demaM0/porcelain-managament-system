@@ -56,7 +56,6 @@ class transaction
       $test=mysqli_query($con,$reg);
       if($test)
       {
-        echo("Transaction created");
         return 1;
       }
     }
