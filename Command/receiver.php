@@ -4,11 +4,6 @@
     require_once('../../Models/InvoiceDetails-model.php');
 	require_once('../../Models/invoice-invoicedetails-model.php');
 
-    $con =DbConnection::getInstance();
-    if(!$con)
-    {
-        die('could not connect: ' . mysqli_error($con));
-    }
 class Receiver
 {
     private $log=[];
