@@ -21,6 +21,29 @@ class  transactioninstallment
           $this->TransactionId=$row["TransactionId"];
         }
     }
+    public static function Transaction($Id)
+    {
+        $con =DbConnection::getInstance();
+        if(!$con)
+        {
+          die('could not connect: ' . mysqli_error($con));
+        }
+        $sql="select * from transactioninstallment where TransactionId=$Id";
+        $result=mysqli_query($con,$sql);
+        $num = mysqli_num_rows($result);
+        $invoiceIdArray=array();
+        if($num>0)
+        {
+          while($row=mysqli_fetch_array($result))
+          {
+            
+              $invoiceloop=$row["InstallmentId"];
+              array_push($invoiceIdArray,$invoiceloop);
+            
+          }
+        }
+        return $invoiceIdArray;
+    }
     public static function create($InstallmentId,$TransactionId)
     {
       $con =DbConnection::getInstance();
