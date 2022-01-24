@@ -5,13 +5,8 @@
 	require_once('../../Models/invoice-invoicedetails-model.php');
 	require_once('../../Command/invoice-create-command.php');
 	require_once('../../Command/receiver.php');
-	require_once('../../Command/invoker.php');
+	require_once('../../Command/invoker.php');  
     session_start();
-	$con =DbConnection::getInstance();
-    if(!$con)
-    {
-        die('could not connect: ' . mysqli_error($con));
-    }
 	$reciever = new Receiver();
     $createCommand = new createCommand($reciever);
 	$invoker = new invoke($createCommand);

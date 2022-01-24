@@ -3,8 +3,8 @@
 <head>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <title>Talk to observers</title>
-    <link rel="stylesheet" type="text/css" href="../LoginStyle.css">
+    <title>Adapter</title>
+    <link rel="stylesheet" type="text/css" href="../Views/LoginStyle.css">
 </head>
 
 <body>
@@ -12,13 +12,13 @@
     <div id="container3">
         <div id="container">
             <div id="box">
-                <h1 id="formHeader"> Create Item </h1>
+                <h1 id="formHeader"> Excel Maker </h1>
 
 
                 <hr>
                 <form action="AdapterController.php" method="POST">
                     <label></label>
-                    <input type="text" name="Id" id="Id" placeholder="EnterInvoiceId ">
+                    <input type="text" name="Id" id="Id" placeholder="Enter Invoice Id ">
                     <input type="text" name="type" id="type" placeholder="Type ">
                     <input type="text" name="FileName" id="FileName" placeholder="FileName ">
                     <button type="submit" name="notify" value="post"> Create File </button>

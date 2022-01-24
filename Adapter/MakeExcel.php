@@ -18,15 +18,14 @@ class Excel implements Maker
     }
     public function makeexcel($filename)
     {
-        
-        $myfile = fopen($filename, "a+") or die("Unable to open file!");
+        $date = date('Y-m-d-H-i-s');
+        $myfile = fopen("excels/$filename.$date.txt", "w");
         $txt ="InvoiceId:".$this->invoice->Id."\n"."InvoiceTotal:".$this->invoice->Total."\n"."Item:".$this->invoiced->ItemId."\n"."Q:".$this->invoiced->Quantity."\n"."Total:".$this->invoiced->Total."\n";
         fwrite($myfile, $txt);
         fclose($myfile);  
         
-         //echo"we reached";
-         echo"InvoiceTotal:".$this->invoice->Total."\n";
-         echo"Item:".$this->invoiced->ItemId."\n"."Q:".$this->invoiced->Quantity."\n"."Total:".$this->invoiced->Total."\n";
+         echo"Invoice sent  ";
+
        
     }
 
