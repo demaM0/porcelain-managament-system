@@ -38,7 +38,7 @@ else
   echo '<script>alert("No matches")</script>';
 }
 customizedreport::AddReportToDB($UserId,$s);
-//echo '<script>window.location="../Views/customized-report.php"</script>';
+echo '<script>window.location="../Views/customized-report.php"</script>';
 
 // $con =DbConnection::getInstance();
 // if(!$con)

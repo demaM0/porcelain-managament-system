@@ -1,0 +1,5 @@
+Item ID: 26
+Name: rosetile
+Color: blue
+Price:  50
+Quantity: 80
