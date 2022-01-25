@@ -1,0 +1,10 @@
+Item ID: 20
+Name: tubgamd
+Color: red
+Price:  6000
+Quantity: 15
+Item ID: 22
+Name: database
+Color: yellow
+Price:  500
+Quantity: 50
