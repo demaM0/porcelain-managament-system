@@ -3,6 +3,8 @@
 	require_once('../../Models/Invoice-model.php');
     require_once('../../Models/InvoiceDetails-model.php');
 	require_once('../../Models/invoice-invoicedetails-model.php');
+    require_once('../../Models/Invoice-model.php');
+    require_once('../../Models/item-model.php');
 
 class Receiver
 {
@@ -20,6 +22,7 @@ class Receiver
     }
     public function invoiceCheckCreate($check)
     {
+        $holderarray = array();
         if($check==1)
         {
             $result = invoice::selectall();
@@ -36,6 +39,9 @@ class Receiver
                     $Id = $values["item_id"];
                     $Price = $values["item_price"];
                     $Quant = $values["item_quantity"];
+                   
+                    array_push($holderarray,$Id);
+                    array_push($holderarray,$Quant);
                     $Tot = $Price*$Quant;
                     InvoiceDetails::create($Id,$Quant,$Tot);
                     $result = InvoiceDetails::selectall();
@@ -51,8 +57,9 @@ class Receiver
         
             
             $_SESSION["shopping_cart"]=array();
+            return $holderarray;
             echo '<script>alert("Purchase completed")</script>';
-            echo '<script>window.location="../../Views/shoppingcart.php"</script>';
+            //echo '<script>window.location="../../Views/shoppingcart.php"</script>';
         }
         else
         {
@@ -72,5 +79,35 @@ class Receiver
         $Invoice = new invoice($Id);
         $Invoice->undelete();
     }
+    public function MinusQuantFromDb($holderarray)
+    {
+        $item = new Items($holderarray[0]);
+
+     for($i=0;$i<count($holderarray);$i++)
+     {
+        
+         if($i%2==0)
+         {
+            $item = new Items($holderarray[$i]);
+         }
+         else
+         {
+            // echo($item->Quantity);
+            // exit (0);
+            $item->Quantity = $item->Quantity - $holderarray[$i];
+      
+            $item->update();
+         }
+
+       //$item = new Items(((int)$keys["item_id"]));
+       
+       //$item->Quantity = $item->Quantity - ((int)$keys["item_quantity"]);
+       //$item->update();
+     }
+ 
+    }
+ 
+    
+
 }
 ?>

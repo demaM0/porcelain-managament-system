@@ -11,7 +11,8 @@ class createCommand implements command{
     public function execute(){
         
        $check= $this->receiver->invoiceCreate();
-        $this->receiver->invoiceCheckCreate($check);
+       $num = $this->receiver->invoiceCheckCreate($check);
+       $this->receiver->MinusQuantFromDb($num);
     }
 }
 ?>

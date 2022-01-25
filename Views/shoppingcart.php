@@ -9,71 +9,7 @@ session_start();
     {
         die('could not connect: ' . mysqli_error($con));
     }
-	
-if(isset($_POST["add_to_cart"]))
-{
 
-	if(isset($_SESSION["shopping_cart"]))
-	{
-		$item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
-		if(!in_array($_GET["id"], $item_array_id))
-		{
-			$count = count($_SESSION["shopping_cart"]);
-			$item_array = array(
-				'item_id'			=>	$_GET["id"],
-				'item_name'			=>	$_POST["name"],
-				'item_price'		=>	$_POST["price"],
-				'item_quantity'		=>	$_POST["quantity"]
-			);
-			$_SESSION["shopping_cart"][$count] = $item_array;
-			echo '<script>window.location="shoppingcart.php"</script>';
-		}
-		else
-		{
-		
-			foreach($_SESSION["shopping_cart"] as $keys => $values)
-			{
-		
-			if($_SESSION["shopping_cart"][$keys]['item_id'] == $_GET["id"])
-			{
-				$_SESSION["shopping_cart"][$keys]['item_quantity'] += $_POST["quantity"];
-			}
-					echo '<script>window.location="shoppingcart.php"</script>';
-				
-			}
-		}
-	}
-	else
-	{
-		$item_array = array(
-			'item_id'			=>	$_GET["id"],
-			'item_name'			=>	$_POST["name"],
-			'item_price'		=>	$_POST["price"],
-			'item_quantity'		=>	$_POST["quantity"]
-		);
-		$_SESSION["shopping_cart"][0] = $item_array;
-	}
-
-	
-	
-
-	
-}
-
-if(isset($_GET["action"]))
-{
-	if($_GET["action"] == "delete")
-	{
-		foreach($_SESSION["shopping_cart"] as $keys => $values)
-		{
-			if($values["item_id"] == $_GET["id"])
-			{
-				unset($_SESSION["shopping_cart"][$keys]);
-				echo '<script>window.location="shoppingcart.php"</script>';
-			}
-		}
-	}
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -106,7 +42,7 @@ if(isset($_GET["action"]))
 				
 	
 			<div class="col-md-4">
-				<form method="post" action="shoppingcart.php?action=add&id=<?php echo $TEST->returner[$i]->Id; ?>">
+			<form action="../Controller/add-item-cart.php" method="POST">
 					<div style="border:1px solid #333; background-color:#f1f1f1; border-radius:5px; padding:16px;" align="center">
 						<img src="images/<?php echo $TEST->returner[$i]->Image; ?>" class="img-responsive" /><br />
 
@@ -119,6 +55,7 @@ if(isset($_GET["action"]))
 						<input type="hidden" name="name" value="<?php echo $TEST->returner[$i]->Name; ?>" />
 
 						<input type="hidden" name="price" value="<?php echo $TEST->returner[$i]->Price; ?>" />
+						<input type="hidden" name="id" value="<?php echo $TEST->returner[$i]->Id; ?>" />
 
 						<input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />
 
@@ -154,7 +91,7 @@ if(isset($_GET["action"]))
 						<td><?php echo $values["item_quantity"]; ?></td>
 						<td>$ <?php echo $values["item_price"]; ?></td>
 						<td>$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2);?></td>
-						<td><a href="shoppingcart.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class="text-danger">Remove</span></a></td>
+						<td><a href="../Controller/remove-item-cart.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class="text-danger">Remove</span></a></td>
 					</tr>
 					<?php
 							$total = $total + ($values["item_quantity"] * $values["item_price"]);
