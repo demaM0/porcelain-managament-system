@@ -29,8 +29,11 @@ class invoice
         die('could not connect: ' . mysqli_error($con));
       }
       $reg = "insert into invoice(Total,CustomerId) values ($Total,$CustomerId)";
-      mysqli_query($con,$reg);
-      
+      $bol = mysqli_query($con,$reg);
+      if($bol)
+      {
+        return 1;
+      }
     }
     public function update()
     {

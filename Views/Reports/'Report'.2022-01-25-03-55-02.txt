@@ -1,0 +1,10 @@
+Item ID: 26
+Name: rosetile
+Color: blue
+Price:  50
+Quantity: 70
+Item ID: 29
+Name: leafytiles
+Color: green
+Price:  30
+Quantity: 50
