@@ -28,9 +28,8 @@ class Category{
         die('could not connect: ' . mysqli_error($con));
       }
       $s= mysqli_insert_id($con); 
-      echo($id);
       $reg="insert into itemcategory(CategoryId,ItemId) values ($s,$id)";
-      var_dump(mysqli_query($con,$reg));
+      mysqli_query($con,$reg);
     }
     public static function create($Name, $ParentId,$id)
     {
@@ -45,8 +44,7 @@ class Category{
       if($num==1)
       {
          $reg = "insert into category (Name, ParentId) values ('$Name', $ParentId)";
-          var_dump( mysqli_query($con,$reg));
-           #header('');
+         mysqli_query($con,$reg);
       }
   }
 
@@ -60,7 +58,7 @@ class Category{
       $bol = $sql->execute();
       if($bol)
       {
-        #header('');
+        echo("updated");
       }		
     }
 

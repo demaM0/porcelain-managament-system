@@ -30,7 +30,4 @@ for($i=0;$i<count($option_values);$i++)
     paymentmethodoptionsvalue::create((int)key($option_values[$i]),current($option_values[$i]),$IMPIdwanted);
 }
 
-//insert all option values
-
-
 ?>

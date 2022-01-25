@@ -52,7 +52,7 @@ class  transactioninstallment
         die('could not connect: ' . mysqli_error($con));
       }
       $reg = "insert into  `transactioninstallment`(InstallmentId,TransactionId) values ($InstallmentId,$TransactionId)";
-      $test=mysqli_query($con,$reg);
+      mysqli_query($con,$reg);
     }
     public static function SelectAllWithId($Transaction)
     {

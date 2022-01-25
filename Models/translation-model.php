@@ -8,7 +8,7 @@ class Translate{
         if (!$con) {
             die('could not connect: ' . mysqli_error($con));
         }
-        // select  id from translation where TranslationName =  $trans_key
+        
 
         $sql = "select word from translationdetails inner join translation on translation.TranslationName = '$trans_key' where translationdetails.LangId = $lang_code and translationdetails.TransId=translation.Id ";
         $result = mysqli_query($con, $sql);

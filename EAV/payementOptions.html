@@ -16,7 +16,7 @@
         <div id="container">
             <div id="box">
                 <form>
-
+                    <!--list all payment methods-->
                     <label for="pay">Choose a payment option:</label>
                     <select id="payment" onChange="update()">
                         <option value="0" default>choose payment method</option>
@@ -30,7 +30,7 @@
                 </form>
 
                 <form onsubmit="return confirmpayment(event)" method="POST" id="#payementform">
-
+                    <!--empty form that we will hold by id in ajax call-->
 
                 </form>
             </div>
@@ -44,7 +44,7 @@
             const select = document.getElementById('payment');
             const option = select.options[select.selectedIndex];
             let payment_type = option.value
-
+                //grabbing the value from the combobox
 
             $.ajax({
                 type: "GET",
@@ -56,17 +56,18 @@
 
                 success: function(obj, textstatus) {
 
-                    //save data and pass to 
-                    //get the results array 
+                    //save chosen method and pass all the results(payment options) to this function 
+                    //get the results array and start generating the tags inside the form
                     console.log("fields", obj.result)
 
                     fields = obj.result
-                        // generate the fields from the array 
+                        //fields = array of options with type name and id
                     let option_fields = fields.map(function(option, index) {
                         return `<input type='${option.Type}' name='${option.OptionField}' id='#${option.OptionField.replace(/ /g, "")}' placeholder='Enter your ${option.OptionField}' required>`
                     })
                     option_fields.push("<button type='submit' name='notify'> confirm payment </button>")
 
+                    //add all the new fields into the form through the element id
                     var form_id = document.getElementById('#payementform');
                     form_id.innerHTML = option_fields.join(" ")
                 }
@@ -75,22 +76,21 @@
 
         function update() {
 
-
-            //go grab 
-            //select Name from options o inner join paymentmethodoptions p on o.Id = p.OptionId where p.PaymentId = 1 
             getOption();
 
         }
 
         function confirmpayment(event) {
 
+            //once button is clicked get all the options we saved in the array feilds are then put into option_values as id being key and value being the value
             event.preventDefault();
             let option_values = fields.map(function(option, index) {
-                return {
-                    [option.OptionId]: document.getElementById(`#${option.OptionField.replace(/ /g, "")}`).value
-                }
+                    return {
+                        [option.OptionId]: document.getElementById(`#${option.OptionField.replace(/ /g, "")}`).value
+                    }
 
-            })
+                })
+                //send through post method
             $.ajax({
                 type: "POST",
                 url: 'paymentconfirmed.php',
@@ -99,6 +99,7 @@
                     option_values: option_values
                 },
                 statusCode: {
+                    //when the call is successful
                     200: function() {
                         window.alert("payment succsess!")
                         location.href = '../Views/shoppingcart.php';

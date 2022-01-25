@@ -9,8 +9,6 @@ class user
 	public $Password;
 	public $IsDeleted;
 
-  //public $JobTitleId;
-
     public function __construct($id)
     {
       $con =DbConnection::getInstance();
@@ -53,12 +51,9 @@ class user
       {
         die('could not connect: ' . mysqli_error($con));
       } 
-      //$query = "SELECT Max(Id) FROM users";
       $query = mysqli_insert_id($con);
       $reg = "insert into userjobtitle ( UserId, JobTitleId ) values ($query,$JobTitleId);";
-      echo($query);
-      echo($JobTitleId);
-      var_dump(mysqli_query($con,$reg));
+      mysqli_query($con,$reg);
       
 }
 
@@ -72,7 +67,7 @@ class user
       }
       $reg = "insert into user (Name, Phone, Email, Password) values ('$Name', '$Phone', '$Email', '$Password')";
       mysqli_query($con,$reg);
-      #header('');
+
     }
 
    public function update()
@@ -83,10 +78,6 @@ class user
       );
       $sql->bind_param('sissi',$this->Name, $this->Phone, $this->Email, $this->Password, $this->Id);
       $bol = $sql->execute();
-      if($bol)
-      {
-        #header('');
-      }		
     }
 
 	public function delete()

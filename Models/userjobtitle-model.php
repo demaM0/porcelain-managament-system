@@ -50,7 +50,7 @@ class userjobtitle {
       }
       $reg = "insert into jobtitle (Name) values ('$Name')";
       mysqli_query($con,$reg);
-      #header('');
+      
     }
     
 
@@ -62,10 +62,6 @@ class userjobtitle {
       );
       $sql->bind_param('si',$this->Name, $this->Id);
       $bol = $sql->execute();
-      if($bol)
-      {
-        #header('');
-      }		
     }
 
     public function delete()

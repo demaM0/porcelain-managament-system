@@ -33,7 +33,7 @@ class InvoiceDetails
       }
       $reg = "insert into invoicedetails (ItemId, Quantity, Total) values ($ItemId, '$Quantity', '$Total')";
       mysqli_query($con,$reg);
-      #header('');
+      
     }
 
    public function update()
@@ -44,10 +44,7 @@ class InvoiceDetails
       );
       $sql->bind_param('iiiii',$this->ItemId, $this->InvoiceId, $this->Quantity, $this->Total, $this->Id);
       $bol = $sql->execute();
-      if($bol)
-      {
-        #header('');
-      }		
+    	
     }
 
 	public function delete()
