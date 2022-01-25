@@ -69,9 +69,6 @@ class customizedreport  {
         );
         $sql->bind_param('s',$s);
         $bol = $sql->execute();
-   
-
-        var_dump($bol);
         
 
     }

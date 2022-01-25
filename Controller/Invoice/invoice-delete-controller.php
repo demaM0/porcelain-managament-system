@@ -7,9 +7,7 @@
     require_once('../../Command/invoice-undo-delete-command.php');
 	require_once('../../Command/receiver.php');
 	require_once('../../Command/invoker.php');
-     //$Id = $_POST['Id'];
-    //$Invoice = new invoice($Id);
-    //$Invoice->delete();
+
     session_start();
 	$con =DbConnection::getInstance();
     if(!$con)

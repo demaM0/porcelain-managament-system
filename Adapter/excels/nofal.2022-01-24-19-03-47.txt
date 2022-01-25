@@ -1,5 +1,0 @@
-InvoiceId:11
-InvoiceTotal:1197
-Item:23
-Q:1
-Total:50

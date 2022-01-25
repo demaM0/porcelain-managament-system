@@ -48,7 +48,7 @@
       $bol = $sql->execute();
       if($bol)
       {
-        echo("update 10/10");
+        echo("updated");
       }
     }
     public function delete()

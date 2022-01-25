@@ -8,7 +8,6 @@ class Excel implements Maker
     {
         $this->invoice=$invoice;
         $this->invoiced=$invoiced;
-        //var_dump($this->invoiced);
     }
     public function print($filename)
     {
@@ -18,8 +17,6 @@ class Excel implements Maker
         fwrite($myfile, $txt);
         fclose($myfile);  
         
-         echo"Invoice sent  ";
-
        
     }
 

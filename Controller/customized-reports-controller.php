@@ -40,24 +40,4 @@ else
 customizedreport::AddReportToDB($UserId,$s);
 echo '<script>window.location="../Views/customized-report.php"</script>';
 
-// $con =DbConnection::getInstance();
-// if(!$con)
-// {
-//     die('could not connect: ' . mysqli_error($con));
-// }
-// $result = mysqli_query($con,$s);
-// $num = mysqli_num_rows($result);
-// $invoiceIdArray=array();
-// if($num>0)
-// {
-//   while($row=mysqli_fetch_array($result))
-//   {
-//     if($row["IsDeleted"]==0)
-//     {
-//       $invoiceloop=$row;
-//       array_push($invoiceIdArray,$invoiceloop);
-
-//     }
-//   }
-// }
 ?>

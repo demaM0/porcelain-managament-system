@@ -34,9 +34,8 @@ class address  {
         die('could not connect: ' . mysqli_error($con));
       }
       $s= mysqli_insert_id($con); 
-      echo($id);
       $reg="insert into supplieraddress(SupplierId,AddressId) values ($id,$s)";
-      var_dump(mysqli_query($con,$reg));
+      mysqli_query($con,$reg);
     }
     public static function create($City, $Building, $ZipCode,$id)
     {
@@ -53,7 +52,7 @@ class address  {
 
       $reg = "insert into address(City, Building, ZipCode) values ('$City', '$Building', $ZipCode)";
       
-      var_dump(mysqli_query($con,$reg));
+      mysqli_query($con,$reg);
     }  
       
     }
@@ -68,7 +67,7 @@ class address  {
       $bol = $sql->execute();
       if($bol)
       {
-        echo("update 10/10");
+        echo("updated");
       }
     }
     public function delete()

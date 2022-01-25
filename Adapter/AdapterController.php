@@ -24,11 +24,9 @@
         {
             
             $InvoiceD=new InvoiceDetails($Inv[$i]);
-            //var_dump($InvoiceD);
-            
             $x=new MakeFile($Invoice,$InvoiceD);
             $x->request($FileType,$FileName);
-            //echo($Inv[$i]);
+            
         }
     }
     
